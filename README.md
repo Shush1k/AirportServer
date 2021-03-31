@@ -1,2 +1,3 @@
-# AirportServer
-Серверная часть Информационно-справочной системы аэропорта. Курсовая работа. Java, RESTful, Spring boot, ORM(JPA), MySql
+# AirportServer. Курсовая работа.
+Серверная часть Информационно-справочной системы аэропорта.  
+Java, RESTful, Spring boot, ORM(JPA), MySql
