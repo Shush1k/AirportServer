@@ -25,3 +25,8 @@ hs_err_pid*
 # Java
 out/
 .idea
+.DS_Store
+
+
+# properties
+application.properties
