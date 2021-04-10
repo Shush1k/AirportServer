@@ -1,10 +1,18 @@
 package server.model;
 
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import server.entity.UserEntity;
 
 import java.util.List;
+
 // С этим пока не разобрался
 //????
+@Setter
+@Getter
+@NoArgsConstructor
 public class User {
     private Long id;
     private String login;
@@ -18,30 +26,4 @@ public class User {
     }
 
 
-    public User() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public List<Flight> getFlights() {
-        return flights;
-    }
-
-    public void setFlights(List<Flight> flights) {
-        this.flights = flights;
-    }
 }

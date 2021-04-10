@@ -1,6 +1,8 @@
 package server.entity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -8,14 +10,14 @@ import javax.persistence.*;
  * Сущность Авиакомпаний
  */
 @Entity
-@Data
+@Setter
+@Getter
 @Table(name = "Airline")
+@NoArgsConstructor
 public class AirlineEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
 
-    public AirlineEntity() {
-    }
 }

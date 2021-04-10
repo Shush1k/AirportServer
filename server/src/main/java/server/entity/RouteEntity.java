@@ -1,6 +1,8 @@
 package server.entity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -9,13 +11,14 @@ import javax.persistence.*;
  * Сущность Маршрутов
  */
 @Entity
-@Data
 @Table(name = "Route")
+@Setter
+@Getter
+@NoArgsConstructor
 public class RouteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public RouteEntity() {
-    }
+
 }

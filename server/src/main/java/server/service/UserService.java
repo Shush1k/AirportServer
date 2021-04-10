@@ -3,6 +3,7 @@ package server.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import server.entity.UserEntity;
+import server.exceptions.UserAlreadyExistException;
 import server.exceptions.UserNotFoundException;
 import server.model.User;
 import server.repository.UserRepository;
@@ -24,7 +25,14 @@ public class UserService {
      * @param user - сущность пользователя
      * @return сохраненного пользователя
      */
-    public UserEntity saveUser(UserEntity user) {
+    public UserEntity saveUser(UserEntity user) throws UserAlreadyExistException {
+//        Так ли должна выглядеть структура?
+        if (userRepo.findUserByLogin(user.getLogin()) != null) {
+            throw new UserAlreadyExistException("Пользователь с таким login уже существует");
+        }
+        if (userRepo.findUserByEmail(user.getEmail()) != null) {
+            throw new UserAlreadyExistException("Пользователь с таким email уже существует");
+        }
         return userRepo.saveAndFlush(user);
     }
 
