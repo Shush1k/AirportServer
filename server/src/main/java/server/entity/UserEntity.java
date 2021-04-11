@@ -38,9 +38,6 @@ public class UserEntity {
     private String lastName;
     @Column(length = 40, nullable = false, unique = true)
     private String email;
-
-    //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-//    private List<FlightEntity> flights;
-    @OneToOne(mappedBy = "user")
-    private PasswordEntity passwordEntity;
+    @Column(name = "password")
+    private String password;
 }

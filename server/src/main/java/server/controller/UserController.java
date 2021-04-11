@@ -1,13 +1,15 @@
 package server.controller;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import server.entity.UserEntity;
 import server.exceptions.UserAlreadyExistException;
 import server.exceptions.UserNotFoundException;
 import server.service.UserService;
+
+import java.util.List;
 
 /**
  * Контроллер Пользователя
@@ -16,8 +18,11 @@ import server.service.UserService;
 @RequestMapping("/users")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     /**
      * Регистрации для пользователя
@@ -42,16 +47,20 @@ public class UserController {
 //
 //    }
 
-//    @PutMapping("/update")
-//    public ResponseEntity update( ){
-//        try {
-//            userService.updateUser()
-//        }
-//    }
+    /**
+     * Обновление пользователя
+     *
+     * @param user - сущность пользователя
+     * @return ResponseEntity
+     */
+    @PutMapping("/update")
+    public ResponseEntity updateByEmail(@RequestBody UserEntity user) {
+        userService.updateByEmail(user);
+        return new ResponseEntity(HttpStatus.OK);
+    }
 
 
-//    /users/info/5 получим id, login, flights.
-//    А что нужно получать?
+//    лучше с email, id приходить не должен
     @GetMapping("/info/{id}")
     public ResponseEntity getOneUser(@PathVariable Long id) throws UserNotFoundException {
         try {
@@ -61,5 +70,28 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }
+    }
+
+    /**
+     * Вывод информации о всех пользователях
+     *
+     * @return ResponseEntity
+     */
+    @GetMapping("/all")
+    public ResponseEntity getUsers() {
+        List<UserEntity> users = userService.getAllUsers();
+        return new ResponseEntity(users, HttpStatus.OK);
+    }
+
+    /**
+     * Удаление пользователя
+     *
+     * @param user - сущность пользователя
+     * @return ResponseEntity
+     */
+    @DeleteMapping("/delete")
+    public ResponseEntity deleteUser(@RequestBody UserEntity user) {
+        userService.deleteByEmail(user);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

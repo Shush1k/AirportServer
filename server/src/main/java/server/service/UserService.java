@@ -1,11 +1,10 @@
 package server.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import server.entity.UserEntity;
 import server.exceptions.UserAlreadyExistException;
 import server.exceptions.UserNotFoundException;
-import server.model.User;
 import server.repository.UserRepository;
 
 import java.util.List;
@@ -16,8 +15,13 @@ import java.util.List;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepo;
+    private static final String USER_NOT_FOUND = "Пользователь %s не найден";
+    private static final String USER_NOT_FOUND_BY_ID = "Пользователь c id %d не найден";
+    private final UserRepository userRepo;
+
+    public UserService(UserRepository userRepo) {
+        this.userRepo = userRepo;
+    }
 
     /**
      * Добавить пользователя в БД
@@ -25,13 +29,10 @@ public class UserService {
      * @param user - сущность пользователя
      * @return сохраненного пользователя
      */
+    @Transactional
     public UserEntity saveUser(UserEntity user) throws UserAlreadyExistException {
-//        Так ли должна выглядеть структура?
-        if (userRepo.findUserByLogin(user.getLogin()) != null) {
-            throw new UserAlreadyExistException("Пользователь с таким login уже существует");
-        }
-        if (userRepo.findUserByEmail(user.getEmail()) != null) {
-            throw new UserAlreadyExistException("Пользователь с таким email уже существует");
+        if (userRepo.findUserByEmail(user.getEmail()).isPresent()) {
+            throw new RuntimeException("Пользователь с таким email уже существует");
         }
         return userRepo.saveAndFlush(user);
     }
@@ -41,24 +42,26 @@ public class UserService {
      * (логин, имя, фамилия, почта)
      *
      * @param user - сущность пользователя
-     * @return
      */
-    public UserEntity updateUser(UserEntity user) {
-        UserEntity userEntity = userRepo.findById(user.getId()).orElse(null);
-        userEntity.setLogin(user.getLogin());
-        userEntity.setFirstName(user.getFirstName());
-        userEntity.setLastName(user.getLastName());
-        userEntity.setEmail(user.getEmail());
-        return userRepo.save(userEntity);
+    @Transactional
+    public void updateByEmail(UserEntity user) {
+        UserEntity userEntity = userRepo.findUserByEmail(user.getEmail())
+                .orElseThrow(() -> new UserNotFoundException(String.format(USER_NOT_FOUND, user.getEmail())));
+        String email = user.getEmail();
+        String password = user.getPassword();
+        String firstName = user.getFirstName();
+        String lastName = user.getLastName();
+        userRepo.updateByEmail(email, password, firstName, lastName);
     }
 
     /**
-     * Удалить пользователя из БД
+     * Удалить пользователя из БД по id
      *
      * @param user - сущность пользователя
      */
-    public void deleteUser(UserEntity user) {
-        userRepo.delete(user);
+    @Transactional
+    public void deleteByEmail(UserEntity user) {
+        userRepo.deleteByEmail(user.getEmail());
     }
 
     /**
@@ -68,17 +71,22 @@ public class UserService {
      * @return - модель пользователя
      * @throws UserNotFoundException - Пользователь не найден
      */
-    public User getById(Long id) throws UserNotFoundException {
-        UserEntity user = userRepo.findById(id).get();
-        if (user == null) {
-            throw new UserNotFoundException("Пользователь не найден");
-        }
-        return User.toModel(user);
+    @Transactional(readOnly = true)
+    public UserEntity getById(Long id) throws UserNotFoundException {
+        UserEntity user = userRepo.findById(id)
+                .orElseThrow(() -> new UserNotFoundException(String.format(USER_NOT_FOUND_BY_ID, id)));
+        return user;
     }
 
     /**
      * Найти всех пользователей
+     *
      * @return список пользователей
      */
-    public List<UserEntity> getAllUsers() { return userRepo.findAll(); }
+    @Transactional(readOnly = true)
+    public List<UserEntity> getAllUsers() {
+        return userRepo.findAll();
+    }
+
+
 }
