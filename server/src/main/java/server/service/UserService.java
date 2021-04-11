@@ -15,7 +15,8 @@ import java.util.List;
 @Service
 public class UserService {
 
-    private static final String USER_NOT_FOUND = "Пользователь %s не найден";
+    private static final String USER_ALREADY_EXIST = "Пользователь уже зарегистрирован";
+    private static final String USER_NOT_FOUND_BY_EMAIL = "Пользователь с почтой %s не найден";
     private static final String USER_NOT_FOUND_BY_ID = "Пользователь c id %d не найден";
     private final UserRepository userRepo;
 
@@ -32,7 +33,7 @@ public class UserService {
     @Transactional
     public UserEntity saveUser(UserEntity user) throws UserAlreadyExistException {
         if (userRepo.findUserByEmail(user.getEmail()).isPresent()) {
-            throw new RuntimeException("Пользователь с таким email уже существует");
+            throw new UserAlreadyExistException(USER_ALREADY_EXIST);
         }
         return userRepo.saveAndFlush(user);
     }
@@ -45,8 +46,8 @@ public class UserService {
      */
     @Transactional
     public void updateByEmail(UserEntity user) {
-        UserEntity userEntity = userRepo.findUserByEmail(user.getEmail())
-                .orElseThrow(() -> new UserNotFoundException(String.format(USER_NOT_FOUND, user.getEmail())));
+        userRepo.findUserByEmail(user.getEmail())
+                .orElseThrow(() -> new UserNotFoundException(String.format(USER_NOT_FOUND_BY_EMAIL, user.getEmail())));
         String email = user.getEmail();
         String password = user.getPassword();
         String firstName = user.getFirstName();

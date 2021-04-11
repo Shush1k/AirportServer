@@ -36,7 +36,7 @@ public class UserController {
             userService.saveUser(user);
             return ResponseEntity.ok("Пользователь успешно сохранен");
         } catch (UserAlreadyExistException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }
@@ -60,7 +60,6 @@ public class UserController {
     }
 
 
-//    лучше с email, id приходить не должен
     @GetMapping("/info/{id}")
     public ResponseEntity getOneUser(@PathVariable Long id) throws UserNotFoundException {
         try {
