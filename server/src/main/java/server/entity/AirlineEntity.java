@@ -8,16 +8,40 @@ import javax.persistence.*;
 
 /**
  * Сущность Авиакомпаний
+ * <p>
+ * Поля авиакомпании:
+ * <p>
+ * id - уникальный идентификатор;
+ * <p>
+ * <p>
+ * companyCode - код авиакомпании;
+ * <p>
+ * companyName - название организации;
+ * <p>
+ * phone - телефон организации;
+ * <p>
+ * email - почта организации;
+ * <p>
  */
 @Entity
 @Setter
 @Getter
-@Table(name = "Airline")
+@Table(name = "airline")
 @NoArgsConstructor
 public class AirlineEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, unique = true)
+    private String companyCode;
+
+    @Column(nullable = false, unique = true)
+    private String companyName;
+    @Column
+    private String phone;
+    @Column
+    private String email;
 
 
 }
