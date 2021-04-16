@@ -45,6 +45,10 @@ public class FlightEntity {
 
     private String status;
 
+    @Column//(nullable = false)
+    private String planeModel;
+
+
 //    как связать таблицу рейсов с маршрутами?
 //    Не работает
 //    @ManyToOne(fetch = FetchType.LAZY)

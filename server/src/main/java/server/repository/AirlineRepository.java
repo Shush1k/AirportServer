@@ -2,6 +2,7 @@ package server.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import server.entity.AirlineEntity;
 
@@ -19,5 +20,5 @@ public interface AirlineRepository extends JpaRepository<AirlineEntity, Long> {
      * @return - список авиакомпаний
      */
     @Query(value = "select * from airline a where a.company_name like :companyName", nativeQuery = true)
-    List<AirlineEntity> findAirlineEntitiesByCompanyName(String companyName);
+    List<AirlineEntity> findAirlineEntitiesByCompanyName(@Param("companyName") String companyName);
 }

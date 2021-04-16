@@ -4,12 +4,15 @@ package server.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import server.dto.UserAuthEntity;
 import server.entity.UserEntity;
 import server.exceptions.UserAlreadyExistException;
 import server.exceptions.UserNotFoundException;
 import server.service.UserService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Контроллер Пользователя
@@ -42,10 +45,18 @@ public class UserController {
         }
     }
 
-//    @PostMapping("/enter")
-//    public ResponseEntity enter(@RequestBody UserEntity user){
-//
-//    }
+    @PostMapping("/auth")
+    public ResponseEntity<?> auth(@RequestBody UserAuthEntity user){
+        UserEntity result = userService.checkAuth(user.getLogin(), user.getPassword());
+        Map<String, Object> map = new HashMap<>();
+        if (result == null){
+            map.put("success", false);
+            return new ResponseEntity<>(map, HttpStatus.OK);
+        }
+        map.put("success", true);
+        map.put("result", result);
+        return new ResponseEntity<>(map, HttpStatus.OK);
+    }
 
     /**
      * Обновление пользователя
@@ -56,7 +67,7 @@ public class UserController {
     @PutMapping("/update")
     public ResponseEntity updateByEmail(@RequestBody UserEntity user) {
         userService.updateByEmail(user);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity("Пользователие данные обновлены",HttpStatus.OK);
     }
 
 

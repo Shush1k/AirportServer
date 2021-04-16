@@ -8,6 +8,7 @@ import server.exceptions.UserNotFoundException;
 import server.repository.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Логика работы с сущностью Пользователя
@@ -89,5 +90,12 @@ public class UserService {
         return userRepo.findAll();
     }
 
+    @Transactional
+    public UserEntity checkAuth(String login, String password){
+
+        Optional<UserEntity> userEntity = userRepo.findUserEntityByEmailAndPassword(login, password);
+
+        return userEntity.orElse(null);
+    }
 
 }

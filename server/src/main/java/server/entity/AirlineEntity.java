@@ -38,6 +38,9 @@ public class AirlineEntity {
 
     @Column(nullable = false, unique = true)
     private String companyName;
+
+    @Column(nullable = false, unique = true)
+    private String website;
     @Column
     private String phone;
     @Column

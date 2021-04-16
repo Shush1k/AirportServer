@@ -21,9 +21,9 @@ public class RouteEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String departure_city;
+    private String departureCity;
     @Column(nullable = false)
-    private String arrival_city;
+    private String arrivalCity;
 
 //    @OneToMany(mappedBy = "route", cascade = CascadeType.ALL)
 //    private Set<RouteEntity> routes;

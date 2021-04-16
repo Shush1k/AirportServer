@@ -40,4 +40,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
      * @param email - почта
      */
     void deleteByEmail(String email);
+
+    Optional<UserEntity> findUserEntityByEmailAndPassword(String email, String password);
 }
