@@ -25,6 +25,6 @@ public class RouteEntity {
     @Column(nullable = false)
     private String arrivalCity;
 
-//    @OneToMany(mappedBy = "route")
-//    private List<FlightEntity> flights;
+    @OneToMany(mappedBy = "route")
+    private List<FlightEntity> flights;
 }

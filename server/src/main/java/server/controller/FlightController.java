@@ -41,4 +41,8 @@ public class FlightController {
         List<FlightEntity> flights = flightService.getFlightsBetweenDates(dateFilter.getStartDate(), dateFilter.getEndDate());
         return new ResponseEntity(flights, HttpStatus.OK);
     }
+
+
+    @GetMapping
+    public ResponseEntity getFlightsByRoutes(@RequestBody DateFilter dateFilter){
 }

@@ -49,11 +49,10 @@ public class FlightEntity {
     private String planeModel;
 
 
-//    как связать таблицу рейсов с маршрутами?
-//    Не работает
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "route_id")
-//    private RouteEntity route;
+    @ManyToOne(fetch = FetchType.EAGER)
+//    name = "route_id" - ссылка на внешний ключ в таблице flights
+    @JoinColumn(name = "route_id")
+    private RouteEntity route;
 
 
 }

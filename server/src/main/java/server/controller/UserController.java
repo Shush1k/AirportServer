@@ -36,11 +36,15 @@ public class UserController {
      */
     @PostMapping("/registration")
     public ResponseEntity<?> registration(@RequestBody UserEntity user) {
+        Map<String, Object> map = new HashMap<>();
         try {
             userService.saveUser(user);
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            map.put("success", true);
+            return new ResponseEntity<>(map, HttpStatus.CREATED);
         } catch (UserAlreadyExistException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+            map.put("success", false);
+//            map.put("errorMessage", e.getMessage());
+            return new ResponseEntity<>(map, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
