@@ -26,7 +26,7 @@ import javax.persistence.*;
 @Entity
 @Setter
 @Getter
-@Table(name = "airline")
+@Table(name = "airlines")
 @NoArgsConstructor
 public class AirlineEntity {
     @Id

@@ -5,14 +5,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 
 /**
  * Сущность Маршрутов
  */
 @Entity
-@Table(name = "route")
+@Table(name = "routes")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -25,6 +25,6 @@ public class RouteEntity {
     @Column(nullable = false)
     private String arrivalCity;
 
-//    @OneToMany(mappedBy = "route", cascade = CascadeType.ALL)
-//    private Set<RouteEntity> routes;
+//    @OneToMany(mappedBy = "route")
+//    private List<FlightEntity> flights;
 }

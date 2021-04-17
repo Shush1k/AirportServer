@@ -30,7 +30,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
      * @param lastName  - фамилия
      */
     @Modifying
-    @Query(value = "update user u set u.email=:email, u.first_name=:firstName," +
+    @Query(value = "update users u set u.email=:email, u.first_name=:firstName," +
             " u.last_name= :lastName, u.login=:email, u.password=:password where u.email=:email", nativeQuery = true)
     void updateByEmail(String email, String password, String firstName, String lastName);
 

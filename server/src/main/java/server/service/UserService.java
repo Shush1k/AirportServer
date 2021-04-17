@@ -90,8 +90,15 @@ public class UserService {
         return userRepo.findAll();
     }
 
-    @Transactional
-    public UserEntity checkAuth(String login, String password){
+    /**
+     * Метод совпадения логина и пароля
+     *
+     * @param login    - логин
+     * @param password - пароль
+     * @return
+     */
+    @Transactional(readOnly = true)
+    public UserEntity checkAuth(String login, String password) {
 
         Optional<UserEntity> userEntity = userRepo.findUserEntityByEmailAndPassword(login, password);
 

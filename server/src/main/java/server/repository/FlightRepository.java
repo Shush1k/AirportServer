@@ -20,6 +20,6 @@ public interface FlightRepository extends JpaRepository<FlightEntity, Long> {
      * @param endDate - конечная дата
      * @return список рейсов
      */
-    @Query(value = "select * from flight f where f.arrival_date >= :startDate AND f.departure_date <= :endDate", nativeQuery = true)
+    @Query(value = "select * from flights f where f.arrival_date >= :startDate AND f.departure_date <= :endDate", nativeQuery = true)
     List<FlightEntity> findFlightsBetweenDates(Date startDate, Date endDate);
 }

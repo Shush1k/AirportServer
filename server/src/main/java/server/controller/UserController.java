@@ -4,7 +4,8 @@ package server.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import server.dto.UserAuthEntity;
+import server.dto.UserAuthDTO;
+import server.dto.UserRegistrationDTO;
 import server.entity.UserEntity;
 import server.exceptions.UserAlreadyExistException;
 import server.exceptions.UserNotFoundException;
@@ -34,19 +35,19 @@ public class UserController {
      * @return ResponseEntity
      */
     @PostMapping("/registration")
-    public ResponseEntity registration(@RequestBody UserEntity user) {
+    public ResponseEntity<?> registration(@RequestBody UserEntity user) {
         try {
             userService.saveUser(user);
-            return ResponseEntity.ok("Пользователь успешно сохранен");
+            return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (UserAlreadyExistException e) {
-            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Произошла ошибка");
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
     @PostMapping("/auth")
-    public ResponseEntity<?> auth(@RequestBody UserAuthEntity user){
+    public ResponseEntity<?> auth(@RequestBody UserAuthDTO user){
         UserEntity result = userService.checkAuth(user.getLogin(), user.getPassword());
         Map<String, Object> map = new HashMap<>();
         if (result == null){
@@ -65,14 +66,14 @@ public class UserController {
      * @return ResponseEntity
      */
     @PutMapping("/update")
-    public ResponseEntity updateByEmail(@RequestBody UserEntity user) {
+    public ResponseEntity<?> updateByEmail(@RequestBody UserEntity user) {
         userService.updateByEmail(user);
-        return new ResponseEntity("Пользователие данные обновлены",HttpStatus.OK);
+        return new ResponseEntity<>("Пользователие данные обновлены",HttpStatus.OK);
     }
 
 
     @GetMapping("/info/{id}")
-    public ResponseEntity getOneUser(@PathVariable Long id) throws UserNotFoundException {
+    public ResponseEntity<?> getOneUser(@PathVariable Long id) throws UserNotFoundException {
         try {
             return ResponseEntity.ok(userService.getById(id));
         } catch (UserNotFoundException e) {
@@ -88,9 +89,9 @@ public class UserController {
      * @return ResponseEntity
      */
     @GetMapping("/all")
-    public ResponseEntity getUsers() {
+    public ResponseEntity<?> getUsers() {
         List<UserEntity> users = userService.getAllUsers();
-        return new ResponseEntity(users, HttpStatus.OK);
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     /**
@@ -100,8 +101,8 @@ public class UserController {
      * @return ResponseEntity
      */
     @DeleteMapping("/delete")
-    public ResponseEntity deleteUser(@RequestBody UserEntity user) {
+    public ResponseEntity<?> deleteUser(@RequestBody UserEntity user) {
         userService.deleteByEmail(user);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

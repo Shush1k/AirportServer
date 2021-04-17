@@ -3,7 +3,7 @@ package server.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import server.entity.DateFilter;
+import server.dto.DateFilter;
 import server.entity.FlightEntity;
 import server.service.FlightService;
 

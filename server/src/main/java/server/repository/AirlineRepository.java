@@ -19,6 +19,6 @@ public interface AirlineRepository extends JpaRepository<AirlineEntity, Long> {
      * @param companyName - название компании
      * @return - список авиакомпаний
      */
-    @Query(value = "select * from airline a where a.company_name like :companyName", nativeQuery = true)
+    @Query(value = "select * from airlines a where a.company_name like :companyName", nativeQuery = true)
     List<AirlineEntity> findAirlineEntitiesByCompanyName(@Param("companyName") String companyName);
 }

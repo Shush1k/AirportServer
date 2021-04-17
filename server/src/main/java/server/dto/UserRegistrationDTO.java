@@ -7,9 +7,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class UserAuthEntity {
+public class UserRegistrationDTO {
     private String login;
+    private String firstName;
+    private String lastName;
+    private String email;
     private String password;
-
-
 }

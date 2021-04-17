@@ -28,7 +28,7 @@ import java.util.Date;
 @Entity
 @Setter
 @Getter
-@Table(name = "flight")
+@Table(name = "flights")
 @NoArgsConstructor
 @AllArgsConstructor
 public class FlightEntity {
@@ -51,9 +51,8 @@ public class FlightEntity {
 
 //    как связать таблицу рейсов с маршрутами?
 //    Не работает
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "id")//, nullable = false)
-//    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "route_id")
 //    private RouteEntity route;
 
 

@@ -20,7 +20,7 @@ import javax.persistence.*;
  * Длина полей 40 символов
  */
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @Setter
 @Getter
 @NoArgsConstructor
