@@ -34,7 +34,7 @@ import java.util.Date;
 public class FlightEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long flight_id;
 
     @Column(nullable = false, unique = true)
     private String flightNumber;

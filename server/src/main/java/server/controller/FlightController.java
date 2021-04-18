@@ -24,6 +24,7 @@ public class FlightController {
      *
      * @return ResponseEntity
      */
+//    Сейчас работает не корректно
     @GetMapping("/all")
     public ResponseEntity getFlights() {
         List<FlightEntity> flights = flightService.getAllFlights();
@@ -41,8 +42,5 @@ public class FlightController {
         List<FlightEntity> flights = flightService.getFlightsBetweenDates(dateFilter.getStartDate(), dateFilter.getEndDate());
         return new ResponseEntity(flights, HttpStatus.OK);
     }
-
-
-    @GetMapping
-    public ResponseEntity getFlightsByRoutes(@RequestBody DateFilter dateFilter){
+    
 }

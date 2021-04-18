@@ -19,7 +19,7 @@ import java.util.List;
 public class RouteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long route_id;
     @Column(nullable = false)
     private String departureCity;
     @Column(nullable = false)
