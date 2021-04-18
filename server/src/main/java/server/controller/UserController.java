@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import server.dto.UserAuthDTO;
-import server.dto.UserRegistrationDTO;
 import server.entity.UserEntity;
 import server.exceptions.UserAlreadyExistException;
 import server.exceptions.UserNotFoundException;
@@ -93,7 +92,7 @@ public class UserController {
      * @return ResponseEntity
      */
     @GetMapping("/all")
-    public ResponseEntity<?> getUsers() {
+    public ResponseEntity<List<UserEntity>> getUsers() {
         List<UserEntity> users = userService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }

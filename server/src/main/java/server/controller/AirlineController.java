@@ -29,9 +29,9 @@ public class AirlineController {
      * @return - список авиакомпании
      */
     @GetMapping("/all")
-    public ResponseEntity getAirlines() {
+    public ResponseEntity<List<AirlineEntity>> getAirlines() {
         List<AirlineEntity> airlines = airlineService.getAllAirlines();
-        return new ResponseEntity(airlines, HttpStatus.OK);
+        return new ResponseEntity<>(airlines, HttpStatus.OK);
     }
 
 
@@ -43,9 +43,9 @@ public class AirlineController {
      */
 //   example /airlines/like?name=s7
     @GetMapping("/like")
-    public ResponseEntity getAirlinesByName(@RequestParam(name = "name") String companyName) {
+    public ResponseEntity<List<AirlineEntity>> getAirlinesByName(@RequestParam(name = "name") String companyName) {
         List<AirlineEntity> airlines = airlineService.getAirlinesByName(companyName);
-        return new ResponseEntity(airlines, HttpStatus.OK);
+        return new ResponseEntity<>(airlines, HttpStatus.OK);
     }
 
 }
