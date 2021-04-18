@@ -11,7 +11,7 @@ create table airlines
     email        varchar(255) null,
     phone        varchar(255) null,
     company_code varchar(255) not null,
-    website      varchar(255) null,
+    website      varchar(255) not null,
     constraint UK_2uuo95r5ryvc4pc90e39u5i5i
         unique (company_code),
     constraint UK_9d9dlobx4a2cm2s8c7yiq9f6f
@@ -109,7 +109,14 @@ insert into flights(arrival_date, departure_date, flight_number, status, plane_m
 values ('2021-04-18 16:10:24.557000', '2021-04-18 14:30:32.323000', 'RF822', 'ожидает', 'Boeing-737', 2);
 
 # airlines
-insert into airlines(company_name, email, phone, company_code, website)
-values ('S7', 'S7@mail.ru', '+79853239844', 'S7', 'https://www.s7.com');
-insert into airlines(company_name, email, phone, company_code, website)
-values ('Aegean', 'aegean@gmail.com', '+79853219144', 'A3', 'https://www.aegean.com');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (1, 'S7', 'S7@mail.ru', '+79853239844', 'S7', 'www.s7.com');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (2, 'Aegean', 'aegean@gmail.com', '+79853219144', 'A3', 'www.aegean.com');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (3, 'Air Arabia', 'arabia@gmail.com', '+74959355422', 'G9', 'www.airarabia.com');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (4, 'Air Astana', 'airastana@gmail.com', '+74953635227', 'KC', 'www.astana.com');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (5, 'Air Moldova', 'airmoldova@airmoldova.com', null, '9U', 'www.airmoldova.md');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (6, 'Austrian', null, '+74959253955', 'OS', 'www.aua.com');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (7, 'Avia Traffic Company', 'atc@aero.kg', '+79264192273', 'YK', 'www.aero.kg');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (8, 'Azal', 'moscow@azalavia.ru', '+74952201897', 'J2', 'www.azal.az');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (9, 'Belavia', 'info@belavia.by', '+74956221882', 'B2', 'www.belavia.by');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (10, 'British airways', null, '+74997514713', 'BA', 'www.ba.com');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (11, 'Egypt Air', 'egyptairmoscow@yahoo.com', '+74959271623', 'MS', 'www.egyptair.com');
