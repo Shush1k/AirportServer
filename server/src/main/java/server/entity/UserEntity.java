@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Сущность Пользователя
@@ -38,6 +39,10 @@ public class UserEntity {
     private String lastName;
     @Column(length = 40, nullable = false, unique = true)
     private String email;
-    @Column(name = "password")
+    @Column(nullable = false)
     private String password;
+    @Column(length = 20)
+    private String phoneNumber;
+    @Column
+    private Date birthDate;
 }

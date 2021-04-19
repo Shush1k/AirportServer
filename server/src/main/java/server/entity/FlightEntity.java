@@ -49,10 +49,10 @@ public class FlightEntity {
     private String planeModel;
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
+//    @ManyToOne(fetch = FetchType.EAGER)
 //    name = "route_id" - ссылка на внешний ключ в таблице flights
-    @JoinColumn(name = "route_id")
-    private RouteEntity route;
+//    @JoinColumn(name = "route_id")
+//    private RouteEntity route;
 
 
 }

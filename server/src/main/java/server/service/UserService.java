@@ -7,6 +7,7 @@ import server.exceptions.UserAlreadyExistException;
 import server.exceptions.UserNotFoundException;
 import server.repository.UserRepository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,7 +54,9 @@ public class UserService {
         String password = user.getPassword();
         String firstName = user.getFirstName();
         String lastName = user.getLastName();
-        userRepo.updateByEmail(email, password, firstName, lastName);
+        Date birthDate = user.getBirthDate();
+        String phoneNumber = user.getPhoneNumber();
+        userRepo.updateByEmail(email, password, firstName, lastName, birthDate, phoneNumber);
     }
 
     /**

@@ -24,13 +24,12 @@ public class FlightController {
      *
      * @return ResponseEntity
      */
-//    Сейчас работает не корректно
     @GetMapping("/all")
     public ResponseEntity<List<FlightEntity>> getFlights() {
         List<FlightEntity> flights = flightService.getAllFlights();
         return new ResponseEntity<>(flights, HttpStatus.OK);
     }
-
+// TODO: настроить связи между таблицами, без связей методы работают корректно
     /**
      * Найти все рейсы между датами
      * фильтрация по датам

@@ -35,7 +35,7 @@ create table flights
     flight_number  varchar(255) not null,
     status         varchar(255) null,
     plane_model    varchar(255) null,
-    route_id       bigint          not null,
+    route_id       bigint       not null,
     constraint UK_aucisqx7arn3fi6eyjmsvqdb3
         unique (flight_number),
     foreign key (route_id) references routes (route_id)
@@ -43,13 +43,15 @@ create table flights
 
 create table users
 (
-    user_id    bigint auto_increment
+    user_id      bigint auto_increment
         primary key,
-    email      varchar(40)  not null,
-    first_name varchar(40)  not null,
-    last_name  varchar(40)  not null,
-    login      varchar(40)  not null,
-    password   varchar(255) null,
+    email        varchar(40)  not null,
+    first_name   varchar(40)  not null,
+    last_name    varchar(40)  not null,
+    login        varchar(40)  not null,
+    password     varchar(255) null,
+    birth_date   datetime(6)  null,
+    phone_number varchar(20)  null,
     constraint UK_ew1hvam8uwaknuaellwhqchhb
         unique (login),
     constraint UK_ob8kqyqqgmefl0aco34akdtpe
