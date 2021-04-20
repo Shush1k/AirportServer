@@ -122,3 +122,14 @@ insert into airlines (airline_id, company_name, email, phone, company_code, webs
 insert into airlines (airline_id, company_name, email, phone, company_code, website) values (9, 'Belavia', 'info@belavia.by', '+74956221882', 'B2', 'www.belavia.by');
 insert into airlines (airline_id, company_name, email, phone, company_code, website) values (10, 'British airways', null, '+74997514713', 'BA', 'www.ba.com');
 insert into airlines (airline_id, company_name, email, phone, company_code, website) values (11, 'Egypt Air', 'egyptairmoscow@yahoo.com', '+74959271623', 'MS', 'www.egyptair.com');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (12, 'EL AL', null, '+74955550959', 'LY', 'www.elal.com');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (13, 'Emirates', null, '+78005553929', 'EK', 'www.emirates.com');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (14, 'Ethiopian Airlines', 'ethiopian@airlines.com', null, 'ET', 'www.ethiair.com');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (15, 'Etihad', null, '+74992223386', 'EY', 'www.etihad.com');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (16, 'Gulf Air', 'gulfair@discovertheworld.ru', '+74957241470', 'GF', 'www.gulfair.com');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (17, 'Iberia', null, '+74951315262', 'IB', 'www.iberia.com');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (18, 'Lufthansa', null, '+74954138424', 'LH', 'www.lufthansa.com');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (19, 'NordStar', 'info@nordstar.ru', null, 'Y7', 'www.nordstar.su');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (21, 'Pegasus', 'info@flypgs.com', null, 'PC', 'www.flypgs.com');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (22, 'Qatar', null, '+74959215072', 'QR', 'www.qatarairways.com');
+insert into airlines (airline_id, company_name, email, phone, company_code, website) values (23, 'Red Wings', 'info@flyredwings.com', '+74952151358', 'WZ', 'www.flyredwings.com');
