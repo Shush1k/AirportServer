@@ -3,10 +3,9 @@ package server.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import server.dto.DateFilter;
 import server.entity.FlightEntity;
 import server.service.FlightService;
 
@@ -41,10 +40,18 @@ public class FlightController {
      * @param dateFilter - сущность дат
      * @return список рейсов
      */
+//    @GetMapping("/dates")
+//    public ResponseEntity<List<FlightEntity>> getFlightsByDates(@RequestBody DateFilter dateFilter) {
+//        List<FlightEntity> flights = flightService.getFlightsBetweenDates(dateFilter.getStartDate(), dateFilter.getEndDate(), dateFilter.getIsArrive());
+//        return new ResponseEntity<>(flights, HttpStatus.OK);
+//    }
     @GetMapping("/dates")
-    public ResponseEntity<List<FlightEntity>> getFlightsByDates(@RequestBody DateFilter dateFilter) {
-        List<FlightEntity> flights = flightService.getFlightsBetweenDates(dateFilter.getStartDate(), dateFilter.getEndDate(), dateFilter.getIsArrive());
+    public ResponseEntity<List<FlightEntity>> getFlightsByDates(@RequestParam(name = "startDate") String startDate,
+                                                                @RequestParam(name = "endDate") String endDate,
+                                                                @RequestParam(name = "isArrive") boolean isArrive) {
+        List<FlightEntity> flights = flightService.getFlightsBetweenDates(startDate, endDate, isArrive);
+        if (flights == null)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(flights, HttpStatus.OK);
     }
-
 }
