@@ -39,12 +39,14 @@ public class AirlineController {
      * Вывод информации об авиакомпаниях по имени
      *
      * @param companyName - имя авиакомпании
+     * @param filter      - вид сортировки
      * @return - список авиакомпании
      */
-//   example /airlines/like?name=s7
+//   example /airlines/like?name=air&filter=true
     @GetMapping("/like")
-    public ResponseEntity<List<AirlineEntity>> getAirlinesByName(@RequestParam(name = "name") String companyName) {
-        List<AirlineEntity> airlines = airlineService.getAirlinesByName(companyName);
+    public ResponseEntity<List<AirlineEntity>> getAirlinesByName(@RequestParam(name = "name") String companyName,
+                                                                 @RequestParam(name = "filter") boolean filter) {
+        List<AirlineEntity> airlines = airlineService.getAirlinesByName(companyName, filter);
         return new ResponseEntity<>(airlines, HttpStatus.OK);
     }
 

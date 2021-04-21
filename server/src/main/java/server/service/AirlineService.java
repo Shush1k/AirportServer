@@ -26,12 +26,19 @@ public class AirlineService {
     }
 
     /**
-     * Найти все авиакомпании по имени
+     * Найти все авиакомпании по вхождению подстроки в имя
      *
+     * @param filter - вид сортировки
+     * @param subName - часть имени
      * @return список авиакомпании
      */
     @Transactional(readOnly = true)
-    public List<AirlineEntity> getAirlinesByName(String companyName) {
-        return airlineRepo.findAirlineEntitiesByCompanyName('%'+companyName+'%');
+    public List<AirlineEntity> getAirlinesByName(String subName, boolean filter) {
+        if (filter){
+            return airlineRepo.findAirlineEntitiesByCompanyNameContainsOrderByCompanyNameDesc(subName);
+        } else {
+            return airlineRepo.findAirlineEntitiesByCompanyNameContains(subName);
+        }
+
     }
 }
