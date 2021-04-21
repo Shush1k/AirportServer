@@ -39,9 +39,9 @@ public class FlightEntity {
     @Column(nullable = false, unique = true)
     private String flightNumber;
     @Column(nullable = false)
-    private Date departure_date;
+    private Date departureDate;
     @Column(nullable = false)
-    private Date arrival_date;
+    private Date arrivalDate;
 
     private String status;
 

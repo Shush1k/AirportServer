@@ -22,4 +22,6 @@ public class DateFilter {
     private Date startDate;
 
     private Date endDate;
+
+    private Boolean isArrive;
 }

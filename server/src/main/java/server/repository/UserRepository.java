@@ -43,5 +43,12 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
      */
     void deleteByEmail(String email);
 
+    /**
+     * Найти пользователя по почте и паролю
+     *
+     * @param email    - почта
+     * @param password - пароль
+     * @return
+     */
     Optional<UserEntity> findUserEntityByEmailAndPassword(String email, String password);
 }
