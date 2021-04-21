@@ -1,10 +1,10 @@
 package server.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import server.entity.FlightEntity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -14,12 +14,25 @@ import java.util.List;
 @Repository
 public interface FlightRepository extends JpaRepository<FlightEntity, Long> {
 
+// Пока пусть будет, как аналог
+//    @Query(value = "select * from flights f where f.arrival_date >= :startDate AND f.arrival_date <= :endDate", nativeQuery = true)
+//    List<FlightEntity> findArrivalFlightsBetweenDates(Date startDate, Date endDate);
+
     /**
-     * Найти рейсы между датами
+     * Найти прибывающие рейсы между датами
+     *
      * @param startDate - начальная дата
-     * @param endDate - конечная дата
+     * @param endDate   - конечная дата
      * @return список рейсов
      */
-    @Query(value = "select * from flights f where f.arrival_date >= :startDate AND f.departure_date <= :endDate", nativeQuery = true)
-    List<FlightEntity> findFlightsBetweenDates(Date startDate, Date endDate);
+    List<FlightEntity> findFlightEntityByArrivalDateBetween(LocalDateTime startDate, LocalDateTime endDate);
+
+    /**
+     * Найти отправляющиеся рейсы между датами
+     *
+     * @param startDate - начальная дата
+     * @param endDate   - конечная дата
+     * @return список рейсов
+     */
+    List<FlightEntity> findFlightEntityByDepartureDateBetween(LocalDateTime startDate, LocalDateTime endDate);
 }
