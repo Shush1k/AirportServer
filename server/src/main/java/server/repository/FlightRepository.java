@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import server.entity.FlightEntity;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,8 +20,8 @@ public interface FlightRepository extends JpaRepository<FlightEntity, Long> {
     /**
      * Найти прибывающие рейсы между датами
      *
-     * @param startDate - начальная дата
-     * @param endDate   - конечная дата
+     * @param startDate начальная дата
+     * @param endDate   конечная дата
      * @return список рейсов
      */
     List<FlightEntity> findFlightEntityByArrivalDateBetween(LocalDateTime startDate, LocalDateTime endDate);
@@ -30,8 +29,8 @@ public interface FlightRepository extends JpaRepository<FlightEntity, Long> {
     /**
      * Найти отправляющиеся рейсы между датами
      *
-     * @param startDate - начальная дата
-     * @param endDate   - конечная дата
+     * @param startDate начальная дата
+     * @param endDate   конечная дата
      * @return список рейсов
      */
     List<FlightEntity> findFlightEntityByDepartureDateBetween(LocalDateTime startDate, LocalDateTime endDate);

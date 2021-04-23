@@ -17,18 +17,18 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     /**
      * Найти пользователя по email
      *
-     * @param email - почта пользователя
-     * @return сущность пользователя
+     * @param email почта пользователя
+     * @return пользователя
      */
     Optional<UserEntity> findUserByEmail(String email);
 
     /**
      * Обновить пользователя в БД
      *
-     * @param email     - почта
-     * @param password  - пароль
-     * @param firstName - имя
-     * @param lastName  - фамилия
+     * @param email     почта
+     * @param password  пароль
+     * @param firstName имя
+     * @param lastName  фамилия
      */
     @Modifying
     @Query(value = "update users u set u.email=:email, u.first_name=:firstName, u.last_name= :lastName," +
@@ -39,16 +39,16 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     /**
      * Удалить пользователя из БД по email
      *
-     * @param email - почта
+     * @param email почта
      */
     void deleteByEmail(String email);
 
     /**
      * Найти пользователя по почте и паролю
      *
-     * @param email    - почта
-     * @param password - пароль
-     * @return
+     * @param email    почта
+     * @param password пароль
+     * @return список пользователей
      */
     Optional<UserEntity> findUserEntityByEmailAndPassword(String email, String password);
 }
