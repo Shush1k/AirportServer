@@ -28,4 +28,18 @@ public interface AirlineRepository extends JpaRepository<AirlineEntity, Long> {
      * @return - список авиакомпаний
      */
     List<AirlineEntity> findAirlineEntitiesByCompanyNameContainsOrderByCompanyNameDesc(String subName);
+
+    /**
+     * Найти все авиакомпании, отсортированные по имени компании в порядке возрастания
+     *
+     * @return - список авиакомпаний
+     */
+    List<AirlineEntity> findAllByOrderByCompanyName();
+
+    /**
+     * Найти все авиакомпании, отсортированные по имени компании в порядке убывания
+     *
+     * @return - список авиакомпаний
+     */
+    List<AirlineEntity> findAllByOrderByCompanyNameDesc();
 }

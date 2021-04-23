@@ -16,13 +16,18 @@ public class AirlineService {
     }
 
     /**
-     * Найти все авиакомпании
+     * Найти все авиакомпании по имени компании
      *
+     * @param filter - вид сортировки
      * @return список авиакомпании
      */
     @Transactional(readOnly = true)
-    public List<AirlineEntity> getAllAirlines() {
-        return airlineRepo.findAll();
+    public List<AirlineEntity> getAllAirlines(boolean filter) {
+        if (filter){
+            return airlineRepo.findAllByOrderByCompanyNameDesc();
+        } else {
+            return airlineRepo.findAllByOrderByCompanyName();
+        }
     }
 
     /**

@@ -26,11 +26,12 @@ public class AirlineController {
     /**
      * Вывод информации о всех авиакомпаниях
      *
+     * @param filter - вид сортировки
      * @return - список авиакомпании
      */
     @GetMapping("/all")
-    public ResponseEntity<List<AirlineEntity>> getAirlines() {
-        List<AirlineEntity> airlines = airlineService.getAllAirlines();
+    public ResponseEntity<List<AirlineEntity>> getAirlines(@RequestParam(name = "filter") boolean filter) {
+        List<AirlineEntity> airlines = airlineService.getAllAirlines(filter);
         return new ResponseEntity<>(airlines, HttpStatus.OK);
     }
 
