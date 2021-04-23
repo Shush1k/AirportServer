@@ -32,7 +32,10 @@ public class UserController {
      * @param user - сущность пользователя
      * @return ResponseEntity
      */
-//    TODO: убрать try catch. переделать, пока не знаю как
+    /*TODO:
+       убрать try catch. переделать, пока не знаю как
+       Хешировать пароль при регистрации пользователя!
+     */
     @PostMapping("/registration")
     public ResponseEntity<?> registration(@RequestBody UserEntity user) {
         Map<String, Object> map = new HashMap<>();
@@ -97,12 +100,18 @@ public class UserController {
     /**
      * Удаление пользователя
      *
-     * @param user - сущность пользователя
+     * @param email    почта
+     * @param password пароль
      * @return ResponseEntity
      */
     @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteUser(@RequestBody UserEntity user) {
-        userService.deleteByEmail(user);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<?> deleteUserByEmail(@RequestParam(name = "email") String email,
+                                               @RequestParam(name = "password") String password) {
+        if (userService.checkAuth(email, password) != null) {
+            userService.deleteByEmail(email);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
     }
 }

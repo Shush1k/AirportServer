@@ -62,11 +62,11 @@ public class UserService {
     /**
      * Удалить пользователя из БД по id
      *
-     * @param user - сущность пользователя
+     * @param email почта
      */
     @Transactional
-    public void deleteByEmail(UserEntity user) {
-        userRepo.deleteByEmail(user.getEmail());
+    public void deleteByEmail(String email) {
+        userRepo.deleteByEmail(email);
     }
 
     /**
