@@ -97,6 +97,9 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
+
+    // Вместо DeleteMapping использую GetMapping
+    // с ним работает удаление корректно
     /**
      * Удаление пользователя
      *
@@ -104,7 +107,7 @@ public class UserController {
      * @param password пароль
      * @return ResponseEntity
      */
-    @DeleteMapping("/delete")
+    @GetMapping("/delete")
     public ResponseEntity<?> deleteUserByEmail(@RequestParam(name = "email") String email,
                                                @RequestParam(name = "password") String password) {
         if (userService.checkAuth(email, password) != null) {
