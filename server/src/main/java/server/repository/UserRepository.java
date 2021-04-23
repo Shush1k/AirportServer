@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import server.entity.UserEntity;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
 
@@ -36,7 +38,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     @Query(value = "update users u set u.email=:email, u.first_name=:firstName, u.last_name= :lastName," +
             " u.login=:email, u.password=:password, u.birth_date=:birthDate, u.phone_number=:phoneNumber " +
             "where u.email=:email", nativeQuery = true)
-    void updateByEmail(String email, String password, String firstName, String lastName, Date birthDate, String phoneNumber);
+    void updateByEmail(String email, String password, String firstName, String lastName, LocalDate birthDate, String phoneNumber);
 
     /**
      * Удалить пользователя из БД по email

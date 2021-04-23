@@ -50,7 +50,7 @@ create table users
     last_name    varchar(40)  not null,
     login        varchar(40)  not null,
     password     varchar(255) null,
-    birth_date   datetime(6)  null,
+    birth_date   date         null,
     phone_number varchar(20)  null,
     constraint UK_ew1hvam8uwaknuaellwhqchhb
         unique (login),

@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -44,5 +46,5 @@ public class UserEntity {
     @Column(length = 20)
     private String phoneNumber;
     @Column
-    private Date birthDate;
+    private LocalDate birthDate;
 }
