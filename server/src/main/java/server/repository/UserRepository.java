@@ -29,6 +29,8 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
      * @param password  пароль
      * @param firstName имя
      * @param lastName  фамилия
+     * @param birthDate дата рождения
+     * @param phoneNumber номер телефона
      */
     @Modifying
     @Query(value = "update users u set u.email=:email, u.first_name=:firstName, u.last_name= :lastName," +
