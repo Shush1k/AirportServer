@@ -47,8 +47,8 @@ public class FlightService {
 
         String format = "yyyy-MM-dd HH:mm";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
-        LocalDateTime endDate = null;
-        LocalDateTime startDate = null;
+        LocalDateTime endDate;
+        LocalDateTime startDate;
         try {
             endDate = LocalDateTime.parse(endStringDate, formatter);
             startDate = LocalDateTime.parse(startStringDate, formatter);
@@ -57,9 +57,9 @@ public class FlightService {
         }
 
         if (arrival) {
-            return flightRepo.findFlightEntityByArrivalDateBetween(startDate, endDate);
+            return flightRepo.findFlightEntitiesByTypeAndArrivalDateBetween("прилет", startDate, endDate);
         } else {
-            return flightRepo.findFlightEntityByDepartureDateBetween(startDate, endDate);
+            return flightRepo.findFlightEntitiesByTypeAndDepartureDateBetween("вылет", startDate, endDate);
         }
 
     }

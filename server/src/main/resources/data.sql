@@ -35,11 +35,16 @@ create table flights
     flight_number  varchar(255) not null,
     status         varchar(255) null,
     plane_model    varchar(255) null,
+    type           varchar(255) not null,
     route_id       bigint       not null,
     constraint UK_aucisqx7arn3fi6eyjmsvqdb3
         unique (flight_number),
-    foreign key (route_id) references routes (route_id)
+    constraint flights_ibfk_1
+        foreign key (route_id) references routes (route_id)
 );
+
+create index route_id
+    on flights (route_id);
 
 create table users
 (
@@ -105,10 +110,9 @@ insert into routes (route_id, arrival_city, departure_city) values (35, 'Мин�
 insert into routes (route_id, arrival_city, departure_city) values (36, 'Краснодар', 'Москва');
 
 # flights
-insert into flights(arrival_date, departure_date, flight_number, status, plane_model, route_id)
-values ('2021-04-17 17:10:24.557000', '2021-04-17 15:10:32.323000', 'RF821', 'ожидает', 'Boeing-737', 1);
-insert into flights(arrival_date, departure_date, flight_number, status, plane_model, route_id)
-values ('2021-04-18 16:10:24.557000', '2021-04-18 14:30:32.323000', 'RF822', 'ожидает', 'Boeing-737', 2);
+insert into flights (arrival_date, departure_date, flight_number, status, plane_model, type, route_id) values ('2021-04-21 18:43:00', '2021-04-21 15:10:00', 'RF821', 'ожидает', 'Boeing-737', 'вылет', 1);
+insert into flights (arrival_date, departure_date, flight_number, status, plane_model, type, route_id) values ('2021-04-18 16:10:00', '2021-04-18 14:30:00', 'RF822', 'ожидает', 'Boeing-737', 'вылет', 2);
+insert into flights (arrival_date, departure_date, flight_number, status, plane_model, type, route_id) values ('2021-04-24 08:30:00', '2021-04-24 06:30:00', 'RA709', 'в полете', 'Boeing-787', 'прилет', 2);
 
 # airlines
 insert into airlines (airline_id, company_name, email, phone, company_code, website) values (1, 'S7', 'S7@mail.ru', '+79853239844', 'S7', 'www.s7.com');

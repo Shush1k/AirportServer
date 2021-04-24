@@ -34,4 +34,25 @@ public interface FlightRepository extends JpaRepository<FlightEntity, Long> {
      * @return список рейсов
      */
     List<FlightEntity> findFlightEntityByDepartureDateBetween(LocalDateTime startDate, LocalDateTime endDate);
+
+
+    /**
+     * Найти прилетающие рейсы между датами прилета
+     *
+     * @param type      тип рейса
+     * @param startDate начальная дата
+     * @param endDate   конечная дата
+     * @return список рейсов
+     */
+    List<FlightEntity> findFlightEntitiesByTypeAndArrivalDateBetween(String type, LocalDateTime startDate, LocalDateTime endDate);
+
+    /**
+     * Найти отправляющиеся рейсы между датами вылета
+     *
+     * @param type      тип рейса
+     * @param startDate начальная дата
+     * @param endDate   конечная дата
+     * @return список рейсов
+     */
+    List<FlightEntity> findFlightEntitiesByTypeAndDepartureDateBetween(String type, LocalDateTime startDate, LocalDateTime endDate);
 }

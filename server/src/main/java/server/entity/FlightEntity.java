@@ -46,6 +46,9 @@ public class FlightEntity {
 
     private String status;
 
+    @Column(nullable = false)
+    private String type;
+
     @Column//(nullable = false)
     private String planeModel;
 
