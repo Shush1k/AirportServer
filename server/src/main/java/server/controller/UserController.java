@@ -59,6 +59,7 @@ public class UserController {
      */
     @PostMapping("/auth")
     public ResponseEntity<?> auth(@RequestBody UserAuthDTO user) {
+        if (user.getPassword() == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         String hashPassword = StringToHashUtil.convert(user.getPassword());
         UserEntity result = userService.checkAuth(user.getLogin(), hashPassword);
         Map<String, Object> map = new HashMap<>();
