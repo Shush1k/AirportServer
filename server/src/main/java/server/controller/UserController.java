@@ -32,10 +32,6 @@ public class UserController {
      * @param user - сущность пользователя
      * @return ResponseEntity
      */
-    /*TODO:
-       убрать try catch. переделать, пока не знаю как
-       Хешировать пароль при регистрации пользователя!
-     */
     @PostMapping("/registration")
     public ResponseEntity<?> registration(@RequestBody UserEntity user) {
         String hashPassword = StringToHashUtil.convert(user.getPassword());
@@ -44,11 +40,10 @@ public class UserController {
         if (result == null) {
             userService.saveUser(user);
             map.put("success", true);
-            return new ResponseEntity<>(map, HttpStatus.OK);
         } else {
             map.put("success", false);
-            return new ResponseEntity<>(map, HttpStatus.OK);
         }
+        return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
     /**
