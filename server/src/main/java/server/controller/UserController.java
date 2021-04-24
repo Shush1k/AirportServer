@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import server.dto.UserAuthDTO;
 import server.entity.UserEntity;
-import server.exceptions.UserAlreadyExistException;
 import server.service.UserService;
 
 import java.util.HashMap;
@@ -38,16 +37,15 @@ public class UserController {
      */
     @PostMapping("/registration")
     public ResponseEntity<?> registration(@RequestBody UserEntity user) {
+        UserEntity result = userService.checkAuth(user.getLogin(), user.getPassword());
         Map<String, Object> map = new HashMap<>();
-        try {
+        if (result == null) {
             userService.saveUser(user);
             map.put("success", true);
-            return new ResponseEntity<>(map, HttpStatus.CREATED);
-        } catch (UserAlreadyExistException e) {
+            return new ResponseEntity<>(map, HttpStatus.OK);
+        } else {
             map.put("success", false);
             return new ResponseEntity<>(map, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -100,6 +98,7 @@ public class UserController {
 
     // Вместо DeleteMapping использую GetMapping
     // с ним работает удаление корректно
+
     /**
      * Удаление пользователя
      *

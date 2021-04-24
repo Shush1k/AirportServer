@@ -115,6 +115,7 @@ insert into flights (flight_id, arrival_date, departure_date, flight_number, sta
 insert into flights (flight_id, arrival_date, departure_date, flight_number, status, plane_model, type, route_id) values (3, '2021-04-20 10:10:00', '2021-04-20 08:00:00', 'S7 2504', 'ожидает', 'Boeing-787', 'вылет', 3);
 insert into flights (flight_id, arrival_date, departure_date, flight_number, status, plane_model, type, route_id) values (4, '2021-04-22 10:52:00', '2021-04-22 07:16:00', 'EY 8651', 'Прибыл', 'Airbus 321', 'вылет', 11);
 insert into flights (flight_id, arrival_date, departure_date, flight_number, status, plane_model, type, route_id) values (5, '2021-04-22 13:52:00', '2021-04-22 11:35:00', 'S7 3751', 'Прибыл', 'Airbus 321', 'вылет', 8);
+insert into flights (flight_id, arrival_date, departure_date, flight_number, status, plane_model, type, route_id) values (6, '2021-04-25 11:12:00', '2021-04-25 09:35:00', 'S7 3251', 'Прибыл', 'Airbus 321', 'вылет', 8);
 
 
 insert into flights (flight_id, arrival_date, departure_date, flight_number, status, plane_model, type, route_id) values (11, '2021-04-24 09:30:00', '2021-04-24 07:03:00', 'RF820', 'ожидает', 'Boeing 737-800', 'прилет', 1);

@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import server.entity.FlightEntity;
 import server.repository.FlightRepository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -15,7 +16,8 @@ import java.util.List;
  */
 @Service
 public class FlightService {
-
+    private final String PATTERN = "yyyy-MM-dd HH:mm";
+    private final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(PATTERN);
 
     private final FlightRepository flightRepo;
 
@@ -31,11 +33,15 @@ public class FlightService {
      */
     @Transactional(readOnly = true)
     public List<FlightEntity> getAllFlights(boolean arrival) {
+        LocalDate today = LocalDate.now();
+
+        LocalDateTime yesterdayTime = today.minusDays(1).atTime(00, 00, 00);
+        LocalDateTime tomorrowTime = today.plusDays(1).atTime(23, 59, 59);
 
         if (arrival) {
-            return flightRepo.findFlightEntitiesByType("прилет");
+            return flightRepo.findFlightEntitiesByTypeAndArrivalDateBetween("прилет", yesterdayTime, tomorrowTime);
         } else {
-            return flightRepo.findFlightEntitiesByType("вылет");
+            return flightRepo.findFlightEntitiesByTypeAndDepartureDateBetween("вылет", yesterdayTime, tomorrowTime);
         }
     }
 
@@ -50,14 +56,11 @@ public class FlightService {
     @Transactional(readOnly = true)
     public List<FlightEntity> getFlightsBetweenDates(String startStringDate, String endStringDate, boolean arrival) {
 
-
-        String format = "yyyy-MM-dd HH:mm";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
         LocalDateTime endDate;
         LocalDateTime startDate;
         try {
-            endDate = LocalDateTime.parse(endStringDate, formatter);
-            startDate = LocalDateTime.parse(startStringDate, formatter);
+            endDate = LocalDateTime.parse(endStringDate, FORMATTER);
+            startDate = LocalDateTime.parse(startStringDate, FORMATTER);
         } catch (DateTimeParseException e) {
             return null;
         }
