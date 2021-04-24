@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -25,6 +26,8 @@ public class RouteEntity {
     @Column(nullable = false)
     private String arrivalCity;
 
-//    @OneToMany(mappedBy = "route")
-//    private List<FlightEntity> flights;
+
+    @JoinTable
+    @OneToMany
+    private Set<FlightEntity> flight;
 }

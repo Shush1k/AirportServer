@@ -10,6 +10,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Сущность Рейсов
@@ -49,14 +50,12 @@ public class FlightEntity {
     @Column(nullable = false)
     private String type;
 
-    @Column//(nullable = false)
+    @Column(nullable = false)
     private String planeModel;
-
-
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    name = "route_id" - ссылка на внешний ключ в таблице flights
-//    @JoinColumn(name = "route_id")
-//    private RouteEntity route;
+    
+    @ManyToOne
+    @JoinColumn(name = "route_id")
+    private RouteEntity route;
 
 
 }
