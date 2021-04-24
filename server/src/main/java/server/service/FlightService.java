@@ -5,12 +5,9 @@ import org.springframework.transaction.annotation.Transactional;
 import server.entity.FlightEntity;
 import server.repository.FlightRepository;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,18 +24,27 @@ public class FlightService {
     }
 
     /**
-     * Найти все рейсы
+     * Найти все рейсы по типу рейса
      *
+     * @param arrival true если прибывающий рейс, иначе вылетающий
      * @return список рейсов
      */
     @Transactional(readOnly = true)
-    public List<FlightEntity> getAllFlights() {
-        return flightRepo.findAll();
+    public List<FlightEntity> getAllFlights(boolean arrival) {
+
+        if (arrival) {
+            return flightRepo.findFlightEntitiesByType("прилет");
+        } else {
+            return flightRepo.findFlightEntitiesByType("вылет");
+        }
     }
 
     /**
-     * Найти все рейсы по дате прибытия/отправления между датами
+     * Найти все рейсы между датами по типу рейса
      *
+     * @param startStringDate начальная дата
+     * @param endStringDate   конечная дата
+     * @param arrival         true если прибывающий рейс, иначе вылетающий
      * @return список рейсов
      */
     @Transactional(readOnly = true)
@@ -52,7 +58,7 @@ public class FlightService {
         try {
             endDate = LocalDateTime.parse(endStringDate, formatter);
             startDate = LocalDateTime.parse(startStringDate, formatter);
-        } catch (DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             return null;
         }
 
