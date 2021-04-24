@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import server.dto.UserAuthDTO;
 import server.entity.UserEntity;
 import server.service.UserService;
+import server.utils.StringToHashUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +38,8 @@ public class UserController {
      */
     @PostMapping("/registration")
     public ResponseEntity<?> registration(@RequestBody UserEntity user) {
-        UserEntity result = userService.checkAuth(user.getLogin(), user.getPassword());
+        String hashPassword = StringToHashUtil.convert(user.getPassword());
+        UserEntity result = userService.checkAuth(user.getLogin(), hashPassword);
         Map<String, Object> map = new HashMap<>();
         if (result == null) {
             userService.saveUser(user);
@@ -57,7 +59,8 @@ public class UserController {
      */
     @PostMapping("/auth")
     public ResponseEntity<?> auth(@RequestBody UserAuthDTO user) {
-        UserEntity result = userService.checkAuth(user.getLogin(), user.getPassword());
+        String hashPassword = StringToHashUtil.convert(user.getPassword());
+        UserEntity result = userService.checkAuth(user.getLogin(), hashPassword);
         Map<String, Object> map = new HashMap<>();
         if (result == null) {
             map.put("success", false);
@@ -109,7 +112,8 @@ public class UserController {
     @GetMapping("/delete")
     public ResponseEntity<?> deleteUserByEmail(@RequestParam(name = "email") String email,
                                                @RequestParam(name = "password") String password) {
-        if (userService.checkAuth(email, password) != null) {
+        String hashPassword = StringToHashUtil.convert(password);
+        if (userService.checkAuth(email, hashPassword) != null) {
             userService.deleteByEmail(email);
             return new ResponseEntity<>(HttpStatus.OK);
         }

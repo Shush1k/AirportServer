@@ -6,6 +6,7 @@ import server.entity.UserEntity;
 import server.exceptions.UserAlreadyExistException;
 import server.exceptions.UserNotFoundException;
 import server.repository.UserRepository;
+import server.utils.StringToHashUtil;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -36,10 +37,13 @@ public class UserService {
      */
     @Transactional
     public UserEntity saveUser(UserEntity user) throws UserAlreadyExistException {
-        if (userRepo.findUserByEmail(user.getEmail()).isPresent()) {
-            throw new UserAlreadyExistException(USER_ALREADY_EXIST);
-        }
-        return userRepo.saveAndFlush(user);
+        UserEntity saveUser = new UserEntity();
+        saveUser.setLogin(user.getLogin());
+        saveUser.setFirstName(user.getFirstName());
+        saveUser.setLastName(user.getLastName());
+        saveUser.setEmail(user.getEmail());
+        saveUser.setPassword(StringToHashUtil.convert(user.getPassword()));
+        return userRepo.save(saveUser);
     }
 
     /**
