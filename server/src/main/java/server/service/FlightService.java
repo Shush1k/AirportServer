@@ -26,35 +26,38 @@ public class FlightService {
     }
 
     /**
-     * Найти все рейсы по типу рейса
+     * Найти все прибывающие/вылетающие рейсы по типу рейса и полю поиска, за промежуток времени
+     * вчера-завтра
      *
+     * @param search  поиск по номеру рейса или городу прибытия/отправления
      * @param arrival true если прибывающий рейс, иначе вылетающий
      * @return список рейсов
      */
     @Transactional(readOnly = true)
-    public List<FlightEntity> getAllFlights(boolean arrival) {
+    public List<FlightEntity> getAllFlightsBySearchText(String search, boolean arrival) {
         LocalDate today = LocalDate.now();
 
         LocalDateTime yesterdayTime = today.minusDays(1).atTime(00, 00, 00);
         LocalDateTime tomorrowTime = today.plusDays(1).atTime(23, 59, 59);
 
         if (arrival) {
-            return flightRepo.findFlightEntitiesByTypeAndArrivalDateBetween("прилет", yesterdayTime, tomorrowTime);
+            return flightRepo.findArrivalFlightsBySearchAndArrivalDateBetween('%' + search + '%', yesterdayTime, tomorrowTime, "прилет");
         } else {
-            return flightRepo.findFlightEntitiesByTypeAndDepartureDateBetween("вылет", yesterdayTime, tomorrowTime);
+            return flightRepo.findArrivalFlightsBySearchAndDepartureDateBetween('%' + search + '%', yesterdayTime, tomorrowTime, "вылет");
         }
     }
 
     /**
-     * Найти все рейсы между датами по типу рейса
+     * Найти все прибывающие/вылетающие рейсы по типу рейса и полю поиска за указанный промежуток времени
      *
+     * @param search          поиск по номеру рейса или городу прибытия/отправления
      * @param startStringDate начальная дата
      * @param endStringDate   конечная дата
      * @param arrival         true если прибывающий рейс, иначе вылетающий
      * @return список рейсов
      */
-    @Transactional(readOnly = true)
-    public List<FlightEntity> getFlightsBetweenDates(String startStringDate, String endStringDate, boolean arrival) {
+    @Transactional
+    public List<FlightEntity> getFlightsBySearchBetweenDates(String search, String startStringDate, String endStringDate, boolean arrival) {
 
         LocalDateTime endDate;
         LocalDateTime startDate;
@@ -64,12 +67,10 @@ public class FlightService {
         } catch (DateTimeParseException e) {
             return null;
         }
-
         if (arrival) {
-            return flightRepo.findFlightEntitiesByTypeAndArrivalDateBetween("прилет", startDate, endDate);
+            return flightRepo.findArrivalFlightsBySearchAndArrivalDateBetween('%' + search + '%', startDate, endDate, "прилет");
         } else {
-            return flightRepo.findFlightEntitiesByTypeAndDepartureDateBetween("вылет", startDate, endDate);
+            return flightRepo.findArrivalFlightsBySearchAndDepartureDateBetween('%' + search + '%', startDate, endDate, "вылет");
         }
-
     }
 }

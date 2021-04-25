@@ -23,31 +23,37 @@ public class FlightController {
     }
 
     /**
-     * Вывод информации о всех рейсах по типу рейса
+     * Получить все рейсы по полю поиска и типу рейса за промежуток времени
+     * вчера-завтра
      *
-     * @param isArrive  true если рейс прибывающие, иначе вылетающий
+     * @param searchText поле поиска
+     * @param isArrive   true если рейс прибывающие, иначе вылетающий
      * @return ResponseEntity со списком рейсов
      */
     @GetMapping("/all")
-    public ResponseEntity<List<FlightEntity>> getFlights(@RequestParam(name = "isArrive") boolean isArrive) {
-        List<FlightEntity> flights = flightService.getAllFlights(isArrive);
+
+    public ResponseEntity<List<FlightEntity>> getFlights(@RequestParam(name = "searchText") String searchText,
+                                                         @RequestParam(name = "isArrive") boolean isArrive) {
+        List<FlightEntity> flights = flightService.getAllFlightsBySearchText(searchText, isArrive);
         return new ResponseEntity<>(flights, HttpStatus.OK);
     }
-// TODO: настроить связи между таблицами, без связей методы работают корректно
 
     /**
-     * Найти все рейсы между датами по типу рейса
+     * Получить все рейсы по полю поиска между датами по типу рейса
      *
+     * @param startDate поле поиска
      * @param startDate начальная дата
      * @param endDate   конечная дата
      * @param isArrive  true если рейс прибывающие, иначе вылетающий
      * @return ResponseEntity со списком рейсов
      */
     @GetMapping("/dates")
-    public ResponseEntity<List<FlightEntity>> getFlightsByDates(@RequestParam(name = "startDate") String startDate,
-                                                                @RequestParam(name = "endDate") String endDate,
-                                                                @RequestParam(name = "isArrive") boolean isArrive) {
-        List<FlightEntity> flights = flightService.getFlightsBetweenDates(startDate, endDate, isArrive);
+    public ResponseEntity<List<FlightEntity>> getFlightsBySearchTextBetweenDates(@RequestParam(name = "searchText") String searchText,
+                                                                                 @RequestParam(name = "startDate") String startDate,
+                                                                                 @RequestParam(name = "endDate") String endDate,
+                                                                                 @RequestParam(name = "isArrive") boolean isArrive
+    ) {
+        List<FlightEntity> flights = flightService.getFlightsBySearchBetweenDates(searchText, startDate, endDate, isArrive);
         if (flights == null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(flights, HttpStatus.OK);
