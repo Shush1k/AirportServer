@@ -68,20 +68,6 @@ public interface FlightRepository extends JpaRepository<FlightEntity, Long> {
     /**
      * Найти все прибывающие рейсы по типу рейса и полю поиска, за указанный промежуток времени
      *
-     * @param search    поле поиска по номеру рейса или городу прибытия
-     * @param startDate начальная дата
-     * @param endDate   конечная дата
-     * @param type      тип рейса
-     * @return список рейсов
-     */
-    @Query(value = "select * from flights f join routes r using(route_id) " +
-            "where f.type = :type and (f.flight_number like :search or r.arrival_city like :search) and " +
-            "(f.arrival_date >= :startDate and f.arrival_date <= :endDate)", nativeQuery = true)
-    List<FlightEntity> findArrivalFlightsBySearchAndArrivalDateBetween(String search, LocalDateTime startDate, LocalDateTime endDate, String type);
-
-    /**
-     * Найти все вылетающие рейсы по типу рейса и полю поиска, за указанный промежуток времени
-     *
      * @param search    поле поиска по номеру рейса или городу отправления
      * @param startDate начальная дата
      * @param endDate   конечная дата
@@ -90,6 +76,20 @@ public interface FlightRepository extends JpaRepository<FlightEntity, Long> {
      */
     @Query(value = "select * from flights f join routes r using(route_id) " +
             "where f.type = :type and (f.flight_number like :search or r.departure_city like :search) and " +
+            "(f.arrival_date >= :startDate and f.arrival_date <= :endDate)", nativeQuery = true)
+    List<FlightEntity> findArrivalFlightsBySearchAndArrivalDateBetween(String search, LocalDateTime startDate, LocalDateTime endDate, String type);
+
+    /**
+     * Найти все вылетающие рейсы по типу рейса и полю поиска, за указанный промежуток времени
+     *
+     * @param search    поле поиска по номеру рейса или городу прибытия
+     * @param startDate начальная дата
+     * @param endDate   конечная дата
+     * @param type      тип рейса
+     * @return список рейсов
+     */
+    @Query(value = "select * from flights f join routes r using(route_id) " +
+            "where f.type = :type and (f.flight_number like :search or r.arrival_city like :search) and " +
             "(f.departure_date >= :startDate and f.departure_date <= :endDate)", nativeQuery = true)
-    List<FlightEntity> findArrivalFlightsBySearchAndDepartureDateBetween(String search, LocalDateTime startDate, LocalDateTime endDate, String type);
+    List<FlightEntity> findDepartureFlightsBySearchAndDepartureDateBetween(String search, LocalDateTime startDate, LocalDateTime endDate, String type);
 }

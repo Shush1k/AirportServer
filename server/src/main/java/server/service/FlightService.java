@@ -43,7 +43,7 @@ public class FlightService {
         if (arrival) {
             return flightRepo.findArrivalFlightsBySearchAndArrivalDateBetween('%' + search + '%', yesterdayTime, tomorrowTime, "прилет");
         } else {
-            return flightRepo.findArrivalFlightsBySearchAndDepartureDateBetween('%' + search + '%', yesterdayTime, tomorrowTime, "вылет");
+            return flightRepo.findDepartureFlightsBySearchAndDepartureDateBetween('%' + search + '%', yesterdayTime, tomorrowTime, "вылет");
         }
     }
 
@@ -70,7 +70,7 @@ public class FlightService {
         if (arrival) {
             return flightRepo.findArrivalFlightsBySearchAndArrivalDateBetween('%' + search + '%', startDate, endDate, "прилет");
         } else {
-            return flightRepo.findArrivalFlightsBySearchAndDepartureDateBetween('%' + search + '%', startDate, endDate, "вылет");
+            return flightRepo.findDepartureFlightsBySearchAndDepartureDateBetween('%' + search + '%', startDate, endDate, "вылет");
         }
     }
 }
