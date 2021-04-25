@@ -57,7 +57,7 @@ public class UserService {
         userRepo.findUserByEmail(user.getEmail())
                 .orElseThrow(() -> new UserNotFoundException(String.format(USER_NOT_FOUND_BY_EMAIL, user.getEmail())));
         String email = user.getEmail();
-        String password = user.getPassword();
+        String password = StringToHashUtil.convert(user.getPassword());
         String firstName = user.getFirstName();
         String lastName = user.getLastName();
         LocalDate birthDate = user.getBirthDate();
