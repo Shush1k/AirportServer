@@ -12,11 +12,9 @@ import java.util.List;
 @Repository
 public interface AirlineRepository extends JpaRepository<AirlineEntity, Long> {
 
-//    Оставил, как пример nativeQuery
-//    @Query(value = "select * from airlines a where a.company_name like :companyName", nativeQuery = true)
 
     /**
-     * Найти все авиакомпании, которые содержат подстроку
+     * Найти все авиакомпании по названию компании, которые содержат подстроку
      *
      * @param subName часть названия авиакомпании
      * @return список авиакомпаний
@@ -24,7 +22,7 @@ public interface AirlineRepository extends JpaRepository<AirlineEntity, Long> {
     List<AirlineEntity> findAirlineEntitiesByCompanyNameContains(String subName);
 
     /**
-     * Найти все авиакомпании, которые содержат подстроку и отсортированы по имени в порядке убывания
+     * Найти все авиакомпании по названию компании, которые содержат подстроку и отсортированы по имени в порядке убывания
      *
      * @param subName часть названия авиакомпании
      * @return список авиакомпаний

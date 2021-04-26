@@ -24,10 +24,10 @@ public class AirlineController {
 
 
     /**
-     * Вывод информации о всех авиакомпаниях
+     * Получить информацию о всех авиакомпаниях и отсортировать
      *
-     * @param filter - вид сортировки
-     * @return - список авиакомпании
+     * @param filter вид сортировки
+     * @return список авиакомпании
      */
     @GetMapping("/all")
     public ResponseEntity<List<AirlineEntity>> getAirlines(@RequestParam(name = "filter") boolean filter) {
@@ -37,18 +37,16 @@ public class AirlineController {
 
 
     /**
-     * Вывод информации об авиакомпаниях по имени
+     * Получить информацию о всех авиакомпаниях по имени авиакомпании и отсортировать их
      *
-     * @param companyName - имя авиакомпании
-     * @param filter      - вид сортировки
-     * @return - список авиакомпании
+     * @param companyName имя авиакомпании
+     * @param filter      вид сортировки
+     * @return список авиакомпании
      */
-//   example /airlines/like?name=air&filter=true
     @GetMapping("/like")
     public ResponseEntity<List<AirlineEntity>> getAirlinesByName(@RequestParam(name = "name") String companyName,
                                                                  @RequestParam(name = "filter") boolean filter) {
         List<AirlineEntity> airlines = airlineService.getAirlinesByName(companyName, filter);
         return new ResponseEntity<>(airlines, HttpStatus.OK);
     }
-
 }
