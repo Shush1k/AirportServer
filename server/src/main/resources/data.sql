@@ -1,5 +1,7 @@
-drop table if exists airlines cascade;
+drop table if exists airlines_flight cascade;
+drop table if exists routes_flight cascade;
 drop table if exists flights cascade;
+drop table if exists airlines cascade;
 drop table if exists routes cascade;
 drop table if exists users cascade;
 
@@ -7,14 +9,16 @@ create table airlines
 (
     airline_id   bigint auto_increment
         primary key,
+    company_code varchar(255) not null,
     company_name varchar(255) not null,
     email        varchar(255) null,
     phone        varchar(255) null,
-    company_code varchar(255) not null,
     website      varchar(255) not null,
-    constraint UK_2uuo95r5ryvc4pc90e39u5i5i
+    constraint UK_7g49xa70lkfq28inwu57m3fam
         unique (company_code),
-    constraint UK_9d9dlobx4a2cm2s8c7yiq9f6f
+    constraint UK_9k7mrq5efbudcfvvnpoeqe0a3
+        unique (website),
+    constraint UK_e4sqx3he4mppxr5vxo0dpuxfc
         unique (company_name)
 );
 
@@ -33,43 +37,71 @@ create table flights
     arrival_date   datetime(6)  not null,
     departure_date datetime(6)  not null,
     flight_number  varchar(255) not null,
+    plane_model    varchar(255) not null,
     status         varchar(255) null,
-    plane_model    varchar(255) null,
     type           varchar(255) not null,
-    route_id       bigint       not null,
-    constraint UK_aucisqx7arn3fi6eyjmsvqdb3
+    company_code   bigint       null,
+    route_id       bigint       null,
+    constraint UK_6bx3i9v6ikjiy0ru5ybor8t7
         unique (flight_number),
-    constraint flights_ibfk_1
-        foreign key (route_id) references routes (route_id)
+    constraint FKggm6k4h1glfes1nsg0wesanvy
+        foreign key (route_id) references routes (route_id),
+    constraint FKq243ppr3q6r9fi272d57pjbpb
+        foreign key (company_code) references airlines (airline_id)
 );
 
-create index route_id
-    on flights (route_id);
+create table airlines_flight
+(
+    airline_entity_airline_id bigint not null,
+    flight_flight_id          bigint not null,
+    primary key (airline_entity_airline_id, flight_flight_id),
+    constraint UK_jhmru1dt8mvx3kfg45vmbxuci
+        unique (flight_flight_id),
+    constraint FK15m93fkegjdmnl4em2yajv019
+        foreign key (airline_entity_airline_id) references airlines (airline_id),
+    constraint FK1wkn58ie7bwuisa4gln5jtvlp
+        foreign key (flight_flight_id) references flights (flight_id)
+);
+
+create table routes_flight
+(
+    route_entity_route_id bigint not null,
+    flight_flight_id      bigint not null,
+    primary key (route_entity_route_id, flight_flight_id),
+    constraint UK_rtl2agnb5t8xx5vv727cecd9u
+        unique (flight_flight_id),
+    constraint FKcnslwk4lk80m3vy8e3o1pm98k
+        foreign key (flight_flight_id) references flights (flight_id),
+    constraint FKtid6s7mryf7e9yry8yhl1lqsa
+        foreign key (route_entity_route_id) references routes (route_id)
+);
 
 create table users
 (
     user_id      bigint auto_increment
         primary key,
+    birth_date   date         null,
     email        varchar(40)  not null,
     first_name   varchar(40)  not null,
     last_name    varchar(40)  not null,
     login        varchar(40)  not null,
-    password     varchar(64) null,
-    birth_date   date         null,
+    password     varchar(255) not null,
     phone_number varchar(20)  null,
-    constraint UK_ew1hvam8uwaknuaellwhqchhb
-        unique (login),
-    constraint UK_ob8kqyqqgmefl0aco34akdtpe
-        unique (email)
+    constraint UK_6dotkott2kjsp8vw4d0m25fb7
+        unique (email),
+    constraint UK_ow0gan20590jrb00upg3va2fn
+        unique (login)
 );
+
+
 
 # users
 insert into users(email, first_name, last_name, login, password)
-values ('aleksandr@mail.ru', 'aleksandr', 'aleksandrov', 'aleksandr@mail.ru', '000');
+values ('aleksandr@mail.ru', 'aleksandr', 'aleksandrov', 'aleksandr@mail.ru', '132855669868590f3e1e9b22f3504d6ba78fda16ae0d003b834c43a47a3c804c');
 insert into users(email, first_name, last_name, login, password)
-values ('ivan12@mail.ru', 'ivan', 'ivanov', 'ivan12@mail.ru', '111');
-insert into users(email, first_name, last_name, login, password)
-values ('ivan@mail.ru', 'ivan', 'ivanov', 'ivan@mail.ru', 'admin');
+values ('ivan12@mail.ru', 'ivan', 'ivanov', 'ivan12@mail.ru', '132855669868590f3e1e9b22f3504d6ba78fda16ae0d003b834c43a47a3c804c');
+insert into users(email, first_name, last_name, login, password, birth_date)
+values ('ivan@mail.ru', 'ivan', 'ivanov', 'ivan@mail.ru', '132855669868590f3e1e9b22f3504d6ba78fda16ae0d003b834c43a47a3c804c', '2001-08-18');
 
 # routes
 insert into routes (route_id, arrival_city, departure_city) values (1, 'Москва', 'Казань');

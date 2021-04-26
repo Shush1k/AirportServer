@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Сущность Авиакомпаний
@@ -46,5 +47,7 @@ public class AirlineEntity {
     @Column
     private String email;
 
-
+    @JoinTable
+    @OneToMany
+    private Set<FlightEntity> flight;
 }

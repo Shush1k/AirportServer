@@ -4,13 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Сущность Рейсов
@@ -57,5 +53,7 @@ public class FlightEntity {
     @JoinColumn(name = "route_id")
     private RouteEntity route;
 
-
+    @ManyToOne
+    @JoinColumn(name = "company_code")
+    private AirlineEntity airline;
 }
