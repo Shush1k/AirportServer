@@ -146,6 +146,9 @@ insert into routes (route_id, arrival_city, departure_city) values (41, 'Тюм�
 insert into routes (route_id, arrival_city, departure_city) values (42, 'Томск', 'Москва');
 insert into routes (route_id, arrival_city, departure_city) values (43, 'Барнаул', 'Москва');
 insert into routes (route_id, arrival_city, departure_city) values (44, 'Нижний Новгород', 'Москва');
+insert into routes (route_id, arrival_city, departure_city) values (45, 'Москва', 'Тюмень');
+insert into routes (route_id, arrival_city, departure_city) values (46, 'Москва', 'Челябинск');
+insert into routes (route_id, arrival_city, departure_city) values (47, 'Москва', 'Пермь');
 
 # airlines
 insert into airlines (airline_id, company_code, company_name, email, phone, website) values (1, 'S7', 'S7', 'S7@mail.ru', '+79853239844', 'www.s7.com');
@@ -202,7 +205,9 @@ insert into flights (flight_id, arrival_date, departure_date, flight_number, pla
 insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (27, '2021-04-26 19:22:00', '2021-04-26 14:11:00', 'MS 519', 'Boeing 737-800', 'ожидает', 'вылет', 11, 7);
 insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (28, '2021-04-26 19:22:00', '2021-04-26 18:00:00', 'GF 5191', 'Airbus 321', 'ожидает', 'вылет', 16, 18);
 insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (29, '2021-04-26 10:25:00', '2021-04-26 09:01:00', 'GF 3199', 'Airbus 321', 'ожидает', 'вылет', 16, 18);
-insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (30, '2021-04-26 14:37:00', '2021-04-26 11:21:00', 'Y7 287', 'Airbus 321', 'ожидает', 'вылет', 16, 21);
+insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (30, '2021-04-26 14:37:00', '2021-04-26 1 1:21:00', 'Y7 287', 'Airbus 321', 'ожидает', 'вылет', 16, 21);
+
+# U6 прилет
 insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (31, '2021-04-26 00:10:00', '2021-04-25 22:21:00', 'U6 076', 'Airbus 320-200', 'Прибыл', 'прилет', 24, 37);
 insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (32, '2021-04-26 04:00:00', '2021-04-26 02:38:00', 'U6 9440', 'Airbus 320-200', 'Прибыл', 'прилет', 24, 36);
 insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (33, '2021-04-26 07:15:00', '2021-04-26 3:48:00', 'U6 388', '32Q', 'Прибыл', 'прилет', 24, 38);
@@ -213,3 +218,7 @@ insert into flights (flight_id, arrival_date, departure_date, flight_number, pla
 insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (38, '2021-04-26 07:40:00', '2021-04-26 3:28:00', 'U6 652', 'Airbus 320-200', 'Прибыл', 'прилет', 24, 43);
 insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (39, '2021-04-26 08:30:00', '2021-04-26 4:37:00', 'U6 099', 'Airbus 321', 'Прибыл', 'прилет', 24, 34);
 insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (40, '2021-04-26 08:10:00', '2021-04-26 7:16:00', 'U6 130', 'Airbus 320-200', 'Прибыл', 'прилет', 24, 44);
+# U6 вылет
+insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (41, '2021-04-26 02:50:00', '2021-04-26 0:40:00', 'U6 341', 'Airbus 321', 'Прибыл', 'вылет', 24, 45);
+insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (42, '2021-04-26 02:50:00', '2021-04-26 0:40:00', 'U6 610', 'Airbus 321', 'Прибыл', 'вылет', 24, 46);
+insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (43, '2021-04-26 08:50:00', '2021-04-26 6:00:00', 'U6 575', 'Airbus 321', 'Прибыл', 'вылет', 24, 47);
