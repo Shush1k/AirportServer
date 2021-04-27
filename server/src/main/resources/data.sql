@@ -42,8 +42,6 @@ create table flights
     type           varchar(255) not null,
     company_code   bigint       null,
     route_id       bigint       null,
-    constraint UK_6bx3i9v6ikjiy0ru5ybor8t7
-        unique (flight_number),
     constraint FKggm6k4h1glfes1nsg0wesanvy
         foreign key (route_id) references routes (route_id),
     constraint FKq243ppr3q6r9fi272d57pjbpb
@@ -140,30 +138,39 @@ insert into routes (route_id, arrival_city, departure_city) values (33, 'Нов�
 insert into routes (route_id, arrival_city, departure_city) values (34, 'Новосибирск', 'Москва');
 insert into routes (route_id, arrival_city, departure_city) values (35, 'Минск', 'Москва');
 insert into routes (route_id, arrival_city, departure_city) values (36, 'Краснодар', 'Москва');
+insert into routes (route_id, arrival_city, departure_city) values (37, 'Калининград', 'Москва');
+insert into routes (route_id, arrival_city, departure_city) values (38, 'Омск', 'Москва');
+insert into routes (route_id, arrival_city, departure_city) values (39, 'Челябинск', 'Москва');
+insert into routes (route_id, arrival_city, departure_city) values (40, 'Екатеринбург', 'Москва');
+insert into routes (route_id, arrival_city, departure_city) values (41, 'Тюмень', 'Москва');
+insert into routes (route_id, arrival_city, departure_city) values (42, 'Томск', 'Москва');
+insert into routes (route_id, arrival_city, departure_city) values (43, 'Барнаул', 'Москва');
+insert into routes (route_id, arrival_city, departure_city) values (44, 'Нижний Новгород', 'Москва');
 
 # airlines
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (1, 'S7', 'S7@mail.ru', '+79853239844', 'S7', 'www.s7.com');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (2, 'Aegean', 'aegean@gmail.com', '+79853219144', 'A3', 'www.aegean.com');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (3, 'Air Arabia', 'arabia@gmail.com', '+74959355422', 'G9', 'www.airarabia.com');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (4, 'Air Astana', 'airastana@gmail.com', '+74953635227', 'KC', 'www.astana.com');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (5, 'Air Moldova', 'airmoldova@airmoldova.com', null, '9U', 'www.airmoldova.md');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (6, 'Austrian', null, '+74959253955', 'OS', 'www.aua.com');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (7, 'Avia Traffic Company', 'atc@aero.kg', '+79264192273', 'YK', 'www.aero.kg');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (8, 'Azal', 'moscow@azalavia.ru', '+74952201897', 'J2', 'www.azal.az');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (9, 'Belavia', 'info@belavia.by', '+74956221882', 'B2', 'www.belavia.by');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (10, 'British airways', null, '+74997514713', 'BA', 'www.ba.com');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (11, 'Egypt Air', 'egyptairmoscow@yahoo.com', '+74959271623', 'MS', 'www.egyptair.com');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (12, 'EL AL', null, '+74955550959', 'LY', 'www.elal.com');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (13, 'Emirates', null, '+78005553929', 'EK', 'www.emirates.com');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (14, 'Ethiopian Airlines', 'ethiopian@airlines.com', null, 'ET', 'www.ethiair.com');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (15, 'Etihad', null, '+74992223386', 'EY', 'www.etihad.com');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (16, 'Gulf Air', 'gulfair@discovertheworld.ru', '+74957241470', 'GF', 'www.gulfair.com');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (17, 'Iberia', null, '+74951315262', 'IB', 'www.iberia.com');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (18, 'Lufthansa', null, '+74954138424', 'LH', 'www.lufthansa.com');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (19, 'NordStar', 'info@nordstar.ru', null, 'Y7', 'www.nordstar.su');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (21, 'Pegasus', 'info@flypgs.com', null, 'PC', 'www.flypgs.com');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (22, 'Qatar', null, '+74959215072', 'QR', 'www.qatarairways.com');
-insert into airlines (airline_id, company_name, email, phone, company_code, website) values (23, 'Red Wings', 'info@flyredwings.com', '+74952151358', 'WZ', 'www.flyredwings.com');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (1, 'S7', 'S7', 'S7@mail.ru', '+79853239844', 'www.s7.com');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (2, 'A3', 'Aegean', 'aegean@gmail.com', '+79853219144', 'www.aegean.com');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (3, 'G9', 'Air Arabia', 'arabia@gmail.com', '+74959355422', 'www.airarabia.com');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (4, 'KC', 'Air Astana', 'airastana@gmail.com', '+74953635227', 'www.astana.com');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (5, '9U', 'Air Moldova', 'airmoldova@airmoldova.com', null, 'www.airmoldova.md');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (6, 'OS', 'Austrian', null, '+74959253955', 'www.aua.com');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (7, 'YK', 'Avia Traffic Company', 'atc@aero.kg', '+79264192273', 'www.aero.kg');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (8, 'J2', 'Azal', 'moscow@azalavia.ru', '+74952201897', 'www.azal.az');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (9, 'B2', 'Belavia', 'info@belavia.by', '+74956221882', 'www.belavia.by');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (10, 'BA', 'British airways', null, '+74997514713', 'www.ba.com');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (11, 'MS', 'Egypt Air', 'egyptairmoscow@yahoo.com', '+74959271623', 'www.egyptair.com');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (12, 'LY', 'EL AL', null, '+74955550959', 'www.elal.com');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (13, 'EK', 'Emirates', null, '+78005553929', 'www.emirates.com');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (14, 'ET', 'Ethiopian Airlines', 'ethiopian@airlines.com', null, 'www.ethiair.com');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (15, 'EY', 'Etihad', null, '+74992223386', 'www.etihad.com');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (16, 'GF', 'Gulf Air', 'gulfair@discovertheworld.ru', '+74957241470', 'www.gulfair.com');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (17, 'IB', 'Iberia', null, '+74951315262', 'www.iberia.com');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (18, 'LH', 'Lufthansa', null, '+74954138424', 'www.lufthansa.com');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (19, 'Y7', 'NordStar', 'info@nordstar.ru', null, 'www.nordstar.su');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (21, 'PC', 'Pegasus', 'info@flypgs.com', null, 'www.flypgs.com');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (22, 'QR', 'Qatar', null, '+74959215072', 'www.qatarairways.com');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (23, 'WZ', 'Red Wings', 'info@flyredwings.com', '+74952151358', 'www.flyredwings.com');
+insert into airlines (airline_id, company_code, company_name, email, phone, website) values (24, 'U6', 'Уральские авиалинии', 'info@uralairlines.ru', '+78007710222', 'www.uralairlines.ru');
 
 # flights
 insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (1, '2021-04-26 18:43:00', '2021-04-26 15:10:00', 'A3 890', 'Boeing 737-800', 'ожидает', 'вылет', 2, 1);
@@ -196,3 +203,13 @@ insert into flights (flight_id, arrival_date, departure_date, flight_number, pla
 insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (28, '2021-04-26 19:22:00', '2021-04-26 18:00:00', 'GF 5191', 'Airbus 321', 'ожидает', 'вылет', 16, 18);
 insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (29, '2021-04-26 10:25:00', '2021-04-26 09:01:00', 'GF 3199', 'Airbus 321', 'ожидает', 'вылет', 16, 18);
 insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (30, '2021-04-26 14:37:00', '2021-04-26 11:21:00', 'Y7 287', 'Airbus 321', 'ожидает', 'вылет', 16, 21);
+insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (31, '2021-04-26 00:10:00', '2021-04-25 22:21:00', 'U6 076', 'Airbus 320-200', 'Прибыл', 'прилет', 24, 37);
+insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (32, '2021-04-26 04:00:00', '2021-04-26 02:38:00', 'U6 9440', 'Airbus 320-200', 'Прибыл', 'прилет', 24, 36);
+insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (33, '2021-04-26 07:15:00', '2021-04-26 3:48:00', 'U6 388', '32Q', 'Прибыл', 'прилет', 24, 38);
+insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (34, '2021-04-26 07:10:00', '2021-04-26 4:42:00', 'U6 609', 'Airbus 320-200', 'Прибыл', 'прилет', 24, 39);
+insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (35, '2021-04-26 07:19:00', '2021-04-26 4:58:00', 'U6 264', 'Airbus 320-200', 'Прибыл', 'прилет', 24, 40);
+insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (36, '2021-04-26 07:27:00', '2021-04-26 4:50:00', 'U6 342', 'Airbus 321', 'Прибыл', 'прилет', 24, 41);
+insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (37, '2021-04-26 07:50:00', '2021-04-26 3:30:00', 'U6 012', 'Airbus 320-200', 'Прибыл', 'прилет', 24, 42);
+insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (38, '2021-04-26 07:40:00', '2021-04-26 3:28:00', 'U6 652', 'Airbus 320-200', 'Прибыл', 'прилет', 24, 43);
+insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (39, '2021-04-26 08:30:00', '2021-04-26 4:37:00', 'U6 099', 'Airbus 321', 'Прибыл', 'прилет', 24, 34);
+insert into flights (flight_id, arrival_date, departure_date, flight_number, plane_model, status, type, company_code, route_id) values (40, '2021-04-26 08:10:00', '2021-04-26 7:16:00', 'U6 130', 'Airbus 320-200', 'Прибыл', 'прилет', 24, 44);
