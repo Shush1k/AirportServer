@@ -12,13 +12,12 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 
 /**
- * Логика работы с сущностью Рейсы
+ * Сервис Рейсов
  */
 @Service
 public class FlightService {
     private final String PATTERN = "yyyy-MM-dd HH:mm";
     private final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(PATTERN);
-
     private final FlightRepository flightRepo;
 
     public FlightService(FlightRepository flightRepo) {

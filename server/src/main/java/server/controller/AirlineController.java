@@ -11,7 +11,9 @@ import server.service.AirlineService;
 
 import java.util.List;
 
-
+/**
+ * Класс контроллер Авиакомпаний
+ */
 @RestController
 @RequestMapping("/airlines")
 public class AirlineController {

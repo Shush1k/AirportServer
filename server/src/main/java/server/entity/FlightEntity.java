@@ -13,15 +13,23 @@ import java.time.LocalDateTime;
  * <p>
  * Поля рейсов:
  * <p>
- * id - уникальный идентификатор;
+ * flight_id - id рейса
  * <p>
- * flightNumber - номер рейса;
+ * flightNumber - номер рейса
  * <p>
- * departure_date - дата и время отправления;
+ * departure_date - дата и время отправления
  * <p>
- * arrival_date - дата и время прибытия;
+ * arrival_date - дата и время прибытия
  * <p>
- * status - статус рейса;
+ * status - статус рейса
+ * <p>
+ * type - тип рейса
+ * <p>
+ * planeModel - модель самолета
+ * <p>
+ * route - объект маршрута
+ * <p>
+ * airline - объект авиакомпаний
  */
 @Entity
 @Setter

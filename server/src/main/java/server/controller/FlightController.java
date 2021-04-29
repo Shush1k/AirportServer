@@ -11,6 +11,9 @@ import server.service.FlightService;
 
 import java.util.List;
 
+/**
+ * Класс контроллер Рейсов
+ */
 @RestController
 @RequestMapping("/flights")
 public class FlightController {
@@ -23,7 +26,7 @@ public class FlightController {
     }
 
     /**
-     * Получить все рейсы по полю поиска и типу рейса за промежуток времени
+     * Получить все рейсы по полю поиска (номер рейса/город) и типу рейса за промежуток времени
      * вчера-завтра
      *
      * @param searchText поле поиска
@@ -39,7 +42,7 @@ public class FlightController {
     }
 
     /**
-     * Получить все рейсы по полю поиска между датами по типу рейса
+     * Получить все рейсы по полю поиска (номер рейса/город) между датами по типу рейса
      *
      * @param startDate поле поиска
      * @param startDate начальная дата

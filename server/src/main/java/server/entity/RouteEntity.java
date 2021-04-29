@@ -11,6 +11,16 @@ import java.util.Set;
 
 /**
  * Сущность Маршрутов
+ * <p>
+ * Поля:
+ * <p>
+ * route_id - id маршрута
+ * <p>
+ * departureCity - город отправления
+ * <p>
+ * arrivalCity - город прибытия
+ * <p>
+ * flight - рейса
  */
 @Entity
 @Table(name = "routes")

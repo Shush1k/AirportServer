@@ -9,8 +9,6 @@ import server.repository.UserRepository;
 import server.utils.StringToHashUtil;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +30,7 @@ public class UserService {
     /**
      * Добавить пользователя в БД
      *
-     * @param user - сущность пользователя
+     * @param user сущность пользователя
      * @return сохраненного пользователя
      */
     @Transactional
@@ -48,9 +46,9 @@ public class UserService {
 
     /**
      * Обновить пользователя в БД
-     * (логин, имя, фамилия, почта)
+     * (логин, имя, фамилия, почта, пароль, номер телефона, дата рождения)
      *
-     * @param user - сущность пользователя
+     * @param user сущность пользователя
      */
     @Transactional
     public void updateByEmail(UserEntity user) {
@@ -66,7 +64,7 @@ public class UserService {
     }
 
     /**
-     * Удалить пользователя из БД по id
+     * Удалить пользователя из БД по email
      *
      * @param email почта
      */
@@ -75,35 +73,12 @@ public class UserService {
         userRepo.deleteByEmail(email);
     }
 
-    /**
-     * Найти пользователя по id
-     *
-     * @param id - id пользователя
-     * @return - модель пользователя
-     * @throws UserNotFoundException - Пользователь не найден
-     */
-    @Transactional(readOnly = true)
-    public UserEntity getById(Long id) throws UserNotFoundException {
-        UserEntity user = userRepo.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(String.format(USER_NOT_FOUND_BY_ID, id)));
-        return user;
-    }
-
-    /**
-     * Найти всех пользователей
-     *
-     * @return список пользователей
-     */
-    @Transactional(readOnly = true)
-    public List<UserEntity> getAllUsers() {
-        return userRepo.findAll();
-    }
 
     /**
      * Метод совпадения логина и пароля
      *
-     * @param login    - логин
-     * @param password - пароль
+     * @param login    логин
+     * @param password пароль
      * @return
      */
     @Transactional(readOnly = true)

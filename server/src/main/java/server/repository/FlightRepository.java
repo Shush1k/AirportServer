@@ -14,10 +14,6 @@ import java.util.List;
 @Repository
 public interface FlightRepository extends JpaRepository<FlightEntity, Long> {
 
-// Пока пусть будет, как аналог
-//    @Query(value = "select * from flights f where f.arrival_date >= :startDate AND f.arrival_date <= :endDate", nativeQuery = true)
-//    List<FlightEntity> findArrivalFlightsBetweenDates(Date startDate, Date endDate);
-
     /**
      * Найти прибывающие рейсы между датами
      *
@@ -36,9 +32,8 @@ public interface FlightRepository extends JpaRepository<FlightEntity, Long> {
      */
     List<FlightEntity> findFlightEntityByDepartureDateBetween(LocalDateTime startDate, LocalDateTime endDate);
 
-
     /**
-     * Найти прилетающие рейсы между датами прилета
+     * Найти прилетающие рейсы по типу рейса между датами прилета
      *
      * @param type      тип рейса
      * @param startDate начальная дата
@@ -48,7 +43,7 @@ public interface FlightRepository extends JpaRepository<FlightEntity, Long> {
     List<FlightEntity> findFlightEntitiesByTypeAndArrivalDateBetween(String type, LocalDateTime startDate, LocalDateTime endDate);
 
     /**
-     * Найти отправляющиеся рейсы между датами вылета
+     * Найти отправляющиеся рейсы по типу рейса между датами вылета
      *
      * @param type      тип рейса
      * @param startDate начальная дата

@@ -10,11 +10,10 @@ import server.service.UserService;
 import server.utils.StringToHashUtil;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
- * Контроллер Пользователя
+ * Класс контроллер Пользователя
  */
 @RestController
 @RequestMapping("/users")
@@ -29,8 +28,8 @@ public class UserController {
     /**
      * Регистрации для пользователя
      *
-     * @param user - сущность пользователя
-     * @return ResponseEntity
+     * @param user сущность пользователя
+     * @return map
      */
     @PostMapping("/registration")
     public ResponseEntity<?> registration(@RequestBody UserEntity user) {
@@ -49,8 +48,8 @@ public class UserController {
     /**
      * Авторизация пользователя
      *
-     * @param user - userAuthDTO, поля авторизации
-     * @return ResponseEntity
+     * @param user userAuthDTO, поля авторизации
+     * @return словарь
      */
     @PostMapping("/auth")
     public ResponseEntity<?> auth(@RequestBody UserAuthDTO user) {
@@ -70,8 +69,8 @@ public class UserController {
     /**
      * Обновление пользователя
      *
-     * @param user - сущность пользователя
-     * @return ResponseEntity
+     * @param user сущность пользователя
+     * @return словарь
      */
     @PutMapping("/update")
     public ResponseEntity<?> updateByEmail(@RequestBody UserEntity user) {
@@ -81,22 +80,6 @@ public class UserController {
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
-
-    /**
-     * Вывод информации о всех пользователях
-     *
-     * @return ResponseEntity
-     */
-//    TODO: убрать после того, как отладим данный контроллер
-    @GetMapping("/all")
-    public ResponseEntity<List<UserEntity>> getUsers() {
-        List<UserEntity> users = userService.getAllUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
-    }
-
-
-    // Вместо DeleteMapping использую GetMapping
-    // с ним работает удаление корректно
 
     /**
      * Удаление пользователя

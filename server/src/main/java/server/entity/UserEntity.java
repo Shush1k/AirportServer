@@ -7,20 +7,27 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * Сущность Пользователя
  * <p>
- * Поля пользователя:
+ * Поля:
+ * <p>
  * id - уникальный идентификатор
+ * <p>
  * login - логин
+ * <p>
  * firstName - имя
+ * <p>
  * lastName - фамилия
+ * <p>
  * email - почта
  * <p>
- * Длина полей 40 символов
+ * password - пароль
+ * <p>
+ * phoneNumber - номер телефона
+ * <p>
+ * birthDate - дата рождения
  */
 @Entity
 @Table(name = "users")
